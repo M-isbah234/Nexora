@@ -1,4 +1,4 @@
-/* Nexora Solvex Base Styles - Commit 6: Define root CSS custom properties and theme tokens */
+/* Nexora Solvex Base Styles - Commit 7: Add initial reset stylesheet and base typography rules */
 :root {
     --color-bg: #0E0B1D;
     --color-surface: #2A1E4D;
