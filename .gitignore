@@ -1,0 +1,6 @@
+node_modules/
+.env
+.cache/
+Nexora_Updated.docx
+test.js
+avajean_source.html
