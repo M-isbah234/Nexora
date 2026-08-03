@@ -3,3 +3,5 @@
     --color-bg: #0E0B1D;
     --color-surface: #2A1E4D;
 }
+/* Implement top navigation bar skeleton and brand logo mark */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
