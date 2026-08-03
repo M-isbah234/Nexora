@@ -7,3 +7,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Add navigation link elements for Work, Services, and About */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Style desktop header navigation with glassmorphism backdrop */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
