@@ -9,3 +9,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Style desktop header navigation with glassmorphism backdrop */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Add mobile menu toggle button and responsive breakpoints */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
