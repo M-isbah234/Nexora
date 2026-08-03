@@ -13,3 +13,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Create initial assets directory and add official branding logo */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Add favicon and manifest link tags to index.html */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
