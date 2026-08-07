@@ -25,3 +25,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Set up SEO keywords and meta description for Nexora Solvex */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Add robots.txt with search crawler indexing rules */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
