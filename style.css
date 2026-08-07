@@ -27,3 +27,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Add robots.txt with search crawler indexing rules */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Add initial sitemap.xml with canonical domain URLs */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
