@@ -17,3 +17,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Set up backend directory structure with Express server scaffold */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Add backend server.js with basic health check endpoint */
+#topNav { display: flex; align-items: center; justify-content: space-between; }
