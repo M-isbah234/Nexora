@@ -1,2 +1,2 @@
-// Nexora Solvex Data Assets - Step 23
-// Define BRAND_INFO object with contact channels and WhatsApp metadata
+// Nexora Solvex Data Assets - Step 24
+// Create layout container for hero showcase section

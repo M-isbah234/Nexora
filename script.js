@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 23
-// Define BRAND_INFO object with contact channels and WhatsApp metadata
+// Nexora Solvex Engine Scaffold - Step 24
+// Create layout container for hero showcase section
