@@ -1,2 +1,2 @@
-// Nexora Solvex Data Assets - Step 26
-// Implement CSS 3D transform utilities and card container styles
+// Nexora Solvex Data Assets - Step 27
+// Add card depth shadows and border highlights in style.css
