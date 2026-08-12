@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 22
-// Create assets.js module to manage project and brand configurations
+// Nexora Solvex Engine Scaffold - Step 23
+// Define BRAND_INFO object with contact channels and WhatsApp metadata
