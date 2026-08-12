@@ -31,3 +31,5 @@
 #topNav { display: flex; align-items: center; justify-content: space-between; }
 /* Implement footer branding layout and copyright notes */
 #topNav { display: flex; align-items: center; justify-content: space-between; }
+/* Create assets.js module to manage project and brand configurations */
+#coverFlowSection { perspective: 1350px; }
