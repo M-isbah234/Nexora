@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 33
-// Add progress bar container and fill calculation
+// Nexora Solvex Engine Scaffold - Step 34
+// Implement pointer event listeners for drag interaction on stage
