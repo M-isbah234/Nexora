@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 31
-// Add basic 3D card positioning calculation along X and Z axes
+// Nexora Solvex Engine Scaffold - Step 32
+// Style active card title and category badge in info panel
