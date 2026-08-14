@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 29
-// Add initial project data array with basic portfolio entries
+// Nexora Solvex Engine Scaffold - Step 30
+// Implement card element creation loop in script.js
