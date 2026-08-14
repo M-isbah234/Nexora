@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 32
-// Style active card title and category badge in info panel
+// Nexora Solvex Engine Scaffold - Step 33
+// Add progress bar container and fill calculation
