@@ -1,2 +1,2 @@
-// Nexora Solvex Data Assets - Step 34
-// Implement pointer event listeners for drag interaction on stage
+// Nexora Solvex Data Assets - Step 35
+// Add smooth interpolation for card translation between indices
