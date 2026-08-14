@@ -1,2 +1,2 @@
-// Nexora Solvex Data Assets - Step 28
-// Set up initial script.js module with event listener bindings
+// Nexora Solvex Data Assets - Step 29
+// Add initial project data array with basic portfolio entries
