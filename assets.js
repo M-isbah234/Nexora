@@ -1,2 +1,2 @@
-// Nexora Solvex Data Assets - Step 39
-// Style dock filter pills with subtle borders and hover states
+// Nexora Solvex Data Assets - Step 40
+// Add click handler to dock pills for direct card navigation

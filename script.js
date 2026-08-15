@@ -1,2 +1,2 @@
-// Nexora Solvex Engine Scaffold - Step 39
-// Style dock filter pills with subtle borders and hover states
+// Nexora Solvex Engine Scaffold - Step 40
+// Add click handler to dock pills for direct card navigation
