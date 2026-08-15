@@ -1,2 +1,2 @@
-// Nexora Solvex Data Assets - Step 40
-// Add click handler to dock pills for direct card navigation
+// Nexora Solvex Data Assets - Step 41
+// Synchronize active dock pill with current Cover Flow card index
