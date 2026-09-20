@@ -4,3 +4,5 @@
 // Starfield & Cover Flow Physics: Introduce AvaJean interactive canvas starfield engine
 
 // Starfield & Cover Flow Physics: Implement dynamic star distribution and sine-wave twinkling
+
+// Starfield & Cover Flow Physics: Add subtle mouse pointer parallax drift to canvas background
