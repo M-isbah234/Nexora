@@ -73,3 +73,5 @@
 #coverFlowSection { perspective: 1350px; }
 /* Add responsive adjustments for tablets and smaller screens */
 #coverFlowSection { perspective: 1350px; }
+/* Introduce AvaJean interactive canvas starfield engine */
+#bgfx canvas { position: absolute; inset: 0; }
