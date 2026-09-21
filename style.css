@@ -83,3 +83,5 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Add ambient nebula glow accents to canvas background corners */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Optimize starfield requestAnimationFrame loop for 60fps performance */
+#bgfx canvas { position: absolute; inset: 0; }

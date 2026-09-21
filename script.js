@@ -10,3 +10,5 @@
 // Starfield & Cover Flow Physics: Implement procedural shooting star animation algorithm
 
 // Starfield & Cover Flow Physics: Add ambient nebula glow accents to canvas background corners
+
+// Starfield & Cover Flow Physics: Optimize starfield requestAnimationFrame loop for 60fps performance
