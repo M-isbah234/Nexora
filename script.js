@@ -8,3 +8,5 @@
 // Starfield & Cover Flow Physics: Add subtle mouse pointer parallax drift to canvas background
 
 // Starfield & Cover Flow Physics: Implement procedural shooting star animation algorithm
+
+// Starfield & Cover Flow Physics: Add ambient nebula glow accents to canvas background corners
