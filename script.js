@@ -16,3 +16,5 @@
 // Starfield & Cover Flow Physics: Refactor 3D Cover Flow physics with inertia and momentum damping
 
 // Starfield & Cover Flow Physics: Implement floor reflection effect with gradient mask below cards
+
+// Starfield & Cover Flow Physics: Tune card rotation angles and side spacing for realistic Cover Flow depth

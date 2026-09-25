@@ -89,3 +89,5 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Implement floor reflection effect with gradient mask below cards */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Tune card rotation angles and side spacing for realistic Cover Flow depth */
+#bgfx canvas { position: absolute; inset: 0; }
