@@ -14,3 +14,5 @@
 // Starfield & Cover Flow Physics: Optimize starfield requestAnimationFrame loop for 60fps performance
 
 // Starfield & Cover Flow Physics: Refactor 3D Cover Flow physics with inertia and momentum damping
+
+// Starfield & Cover Flow Physics: Implement floor reflection effect with gradient mask below cards

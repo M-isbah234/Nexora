@@ -87,3 +87,5 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Refactor 3D Cover Flow physics with inertia and momentum damping */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Implement floor reflection effect with gradient mask below cards */
+#bgfx canvas { position: absolute; inset: 0; }
