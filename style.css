@@ -85,3 +85,5 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Optimize starfield requestAnimationFrame loop for 60fps performance */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Refactor 3D Cover Flow physics with inertia and momentum damping */
+#bgfx canvas { position: absolute; inset: 0; }

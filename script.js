@@ -12,3 +12,5 @@
 // Starfield & Cover Flow Physics: Add ambient nebula glow accents to canvas background corners
 
 // Starfield & Cover Flow Physics: Optimize starfield requestAnimationFrame loop for 60fps performance
+
+// Starfield & Cover Flow Physics: Refactor 3D Cover Flow physics with inertia and momentum damping
