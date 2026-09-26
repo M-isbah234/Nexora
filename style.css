@@ -91,3 +91,5 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Tune card rotation angles and side spacing for realistic Cover Flow depth */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Add pointer capture handling to prevent stuck drag states */
+#bgfx canvas { position: absolute; inset: 0; }

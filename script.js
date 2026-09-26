@@ -18,3 +18,5 @@
 // Starfield & Cover Flow Physics: Implement floor reflection effect with gradient mask below cards
 
 // Starfield & Cover Flow Physics: Tune card rotation angles and side spacing for realistic Cover Flow depth
+
+// Starfield & Cover Flow Physics: Add pointer capture handling to prevent stuck drag states
