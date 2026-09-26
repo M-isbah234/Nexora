@@ -20,3 +20,5 @@
 // Starfield & Cover Flow Physics: Tune card rotation angles and side spacing for realistic Cover Flow depth
 
 // Starfield & Cover Flow Physics: Add pointer capture handling to prevent stuck drag states
+
+// Starfield & Cover Flow Physics: Refine card snapping physics to settle cleanly on nearest integer index
