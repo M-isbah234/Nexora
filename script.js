@@ -22,3 +22,5 @@
 // Starfield & Cover Flow Physics: Add pointer capture handling to prevent stuck drag states
 
 // Starfield & Cover Flow Physics: Refine card snapping physics to settle cleanly on nearest integer index
+
+// Starfield & Cover Flow Physics: Add subtle visual feedback on card transitions

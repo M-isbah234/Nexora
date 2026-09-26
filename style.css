@@ -95,3 +95,5 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Refine card snapping physics to settle cleanly on nearest integer index */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Add subtle visual feedback on card transitions */
+#bgfx canvas { position: absolute; inset: 0; }
