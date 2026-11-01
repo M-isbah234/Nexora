@@ -12,3 +12,5 @@
 // Project integration: Design authentic SVG preview mockup for Aetheric Store luxury e-commerce
 
 // Project integration: Add Aetheric Store flagship project entry with live Vercel deployment link
+
+// Project integration: Incorporate product showcase and admin panel indicators in Aetheric mockup
