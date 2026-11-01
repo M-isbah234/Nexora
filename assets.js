@@ -38,3 +38,5 @@
 // Project integration: Add Edusity flagship project entry with live Vercel deployment link
 
 // Project integration: Incorporate course cards and campus portal layout in Edusity SVG mockup
+
+// Project integration: Assemble FLAGSHIP_PROJECTS array with complete tags, tech stack, and links
