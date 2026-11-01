@@ -50,3 +50,5 @@
 // Project integration: Build project detail sheet modal layout with preview image and tech tags
 
 // Project integration: Add live deployment and video demo action buttons to project modal
+
+// Project integration: Add keyboard ESC key listener to dismiss project detail modal
