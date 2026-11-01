@@ -18,3 +18,5 @@
 // Project integration: Design authentic SVG preview mockup for QuickStay hotel reservation platform
 
 // Project integration: Add QuickStay flagship project entry with live Vercel deployment link
+
+// Project integration: Include search booking bar and room cards in QuickStay SVG mockup
