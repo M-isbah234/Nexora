@@ -28,3 +28,5 @@
 // Project integration: Incorporate EasyPaisa checkout bar and catalog tiles in Saud Emporium mockup
 
 // Project integration: Design authentic SVG preview mockup for MedixWeb AI hospital assistant
+
+// Project integration: Add MedixWeb flagship project entry with live Vercel deployment link
