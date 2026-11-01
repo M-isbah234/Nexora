@@ -34,3 +34,5 @@
 // Project integration: Include AI clinical diagnosis input box in MedixWeb SVG mockup
 
 // Project integration: Design authentic SVG preview mockup for Edusity university LMS platform
+
+// Project integration: Add Edusity flagship project entry with live Vercel deployment link
