@@ -8,3 +8,5 @@
 // Project integration: Add Hot N Tasty Roll flagship project entry with live Vercel URL
 
 // Project integration: Include AI food concierge preview within Hot N Tasty Roll SVG mockup
+
+// Project integration: Design authentic SVG preview mockup for Aetheric Store luxury e-commerce
