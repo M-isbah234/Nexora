@@ -16,3 +16,5 @@
 // Project integration: Incorporate product showcase and admin panel indicators in Aetheric mockup
 
 // Project integration: Design authentic SVG preview mockup for QuickStay hotel reservation platform
+
+// Project integration: Add QuickStay flagship project entry with live Vercel deployment link
