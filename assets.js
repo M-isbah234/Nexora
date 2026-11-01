@@ -30,3 +30,5 @@
 // Project integration: Design authentic SVG preview mockup for MedixWeb AI hospital assistant
 
 // Project integration: Add MedixWeb flagship project entry with live Vercel deployment link
+
+// Project integration: Include AI clinical diagnosis input box in MedixWeb SVG mockup
