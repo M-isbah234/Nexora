@@ -46,3 +46,5 @@
 // Project integration: Add project badge overlays (LIVE PRODUCTION, CLIENT DELIVERED)
 
 // Project integration: Implement click handler to open project showcase modal
+
+// Project integration: Build project detail sheet modal layout with preview image and tech tags
