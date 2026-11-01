@@ -42,3 +42,5 @@
 // Project integration: Assemble FLAGSHIP_PROJECTS array with complete tags, tech stack, and links
 
 // Project integration: Render authentic preview images on Cover Flow 3D cards
+
+// Project integration: Add project badge overlays (LIVE PRODUCTION, CLIENT DELIVERED)
