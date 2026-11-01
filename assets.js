@@ -52,3 +52,5 @@
 // Project integration: Add live deployment and video demo action buttons to project modal
 
 // Project integration: Add keyboard ESC key listener to dismiss project detail modal
+
+// Project integration: Update bottom dock to display all 6 flagship project title pills
