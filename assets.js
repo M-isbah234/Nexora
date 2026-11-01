@@ -2,3 +2,5 @@
 // Add responsive adjustments for tablets and smaller screens
 
 // Project integration: Create makeSvgUri helper function to generate authentic UI preview mockups
+
+// Project integration: Design authentic SVG preview mockup for Hot N Tasty Roll restaurant
