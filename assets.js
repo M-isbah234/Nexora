@@ -20,3 +20,5 @@
 // Project integration: Add QuickStay flagship project entry with live Vercel deployment link
 
 // Project integration: Include search booking bar and room cards in QuickStay SVG mockup
+
+// Project integration: Design authentic SVG preview mockup for Saud Emporium couture boutique
