@@ -4,3 +4,5 @@
 // Project integration: Create makeSvgUri helper function to generate authentic UI preview mockups
 
 // Project integration: Design authentic SVG preview mockup for Hot N Tasty Roll restaurant
+
+// Project integration: Add Hot N Tasty Roll flagship project entry with live Vercel URL
