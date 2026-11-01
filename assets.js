@@ -44,3 +44,5 @@
 // Project integration: Render authentic preview images on Cover Flow 3D cards
 
 // Project integration: Add project badge overlays (LIVE PRODUCTION, CLIENT DELIVERED)
+
+// Project integration: Implement click handler to open project showcase modal
