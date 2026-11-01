@@ -36,3 +36,5 @@
 // Project integration: Design authentic SVG preview mockup for Edusity university LMS platform
 
 // Project integration: Add Edusity flagship project entry with live Vercel deployment link
+
+// Project integration: Incorporate course cards and campus portal layout in Edusity SVG mockup
