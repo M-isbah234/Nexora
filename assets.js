@@ -22,3 +22,5 @@
 // Project integration: Include search booking bar and room cards in QuickStay SVG mockup
 
 // Project integration: Design authentic SVG preview mockup for Saud Emporium couture boutique
+
+// Project integration: Add Saud Emporium flagship project entry with live client deployment link
