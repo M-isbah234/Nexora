@@ -48,3 +48,5 @@
 // Project integration: Implement click handler to open project showcase modal
 
 // Project integration: Build project detail sheet modal layout with preview image and tech tags
+
+// Project integration: Add live deployment and video demo action buttons to project modal
