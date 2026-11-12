@@ -32,3 +32,4 @@
 // Tab Sheet logic: Add Customer Support & Admin Desks service description and deliverables
 // Tab Sheet logic: Add CRM Systems & Admin Dashboards service description and deliverables
 // Tab Sheet logic: Implement dynamic services grid rendering function in script.js
+// Tab Sheet logic: Style service cards with border glow and hover elevation

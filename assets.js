@@ -70,3 +70,5 @@
 // Services & Pricing: Add CRM Systems & Admin Dashboards service description and deliverables
 
 // Services & Pricing: Implement dynamic services grid rendering function in script.js
+
+// Services & Pricing: Style service cards with border glow and hover elevation
