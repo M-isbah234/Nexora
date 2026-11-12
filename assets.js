@@ -58,3 +58,5 @@
 // Services & Pricing: Define core engineering SERVICES_DATA structure in assets.js
 
 // Services & Pricing: Add Websites & Web Applications service description and deliverables
+
+// Services & Pricing: Add Domain-Trained AI Chatbots service description and deliverables
