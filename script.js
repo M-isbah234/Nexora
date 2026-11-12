@@ -25,3 +25,4 @@
 
 // Starfield & Cover Flow Physics: Add subtle visual feedback on card transitions
 // Tab Sheet logic: Define core engineering SERVICES_DATA structure in assets.js
+// Tab Sheet logic: Add Websites & Web Applications service description and deliverables

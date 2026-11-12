@@ -56,3 +56,5 @@
 // Project integration: Update bottom dock to display all 6 flagship project title pills
 
 // Services & Pricing: Define core engineering SERVICES_DATA structure in assets.js
+
+// Services & Pricing: Add Websites & Web Applications service description and deliverables
