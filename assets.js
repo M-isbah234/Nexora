@@ -64,3 +64,5 @@
 // Services & Pricing: Add Autonomous AI Agents service description and deliverables
 
 // Services & Pricing: Add Canva Designing & Posters service description and deliverables
+
+// Services & Pricing: Add Customer Support & Admin Desks service description and deliverables
