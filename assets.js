@@ -54,3 +54,5 @@
 // Project integration: Add keyboard ESC key listener to dismiss project detail modal
 
 // Project integration: Update bottom dock to display all 6 flagship project title pills
+
+// Services & Pricing: Define core engineering SERVICES_DATA structure in assets.js
