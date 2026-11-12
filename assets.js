@@ -62,3 +62,5 @@
 // Services & Pricing: Add Domain-Trained AI Chatbots service description and deliverables
 
 // Services & Pricing: Add Autonomous AI Agents service description and deliverables
+
+// Services & Pricing: Add Canva Designing & Posters service description and deliverables

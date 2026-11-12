@@ -28,3 +28,4 @@
 // Tab Sheet logic: Add Websites & Web Applications service description and deliverables
 // Tab Sheet logic: Add Domain-Trained AI Chatbots service description and deliverables
 // Tab Sheet logic: Add Autonomous AI Agents service description and deliverables
+// Tab Sheet logic: Add Canva Designing & Posters service description and deliverables
