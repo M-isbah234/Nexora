@@ -72,3 +72,5 @@
 // Services & Pricing: Implement dynamic services grid rendering function in script.js
 
 // Services & Pricing: Style service cards with border glow and hover elevation
+
+// Services & Pricing: Add deliverables checklist with custom check icons for each service
