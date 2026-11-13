@@ -88,3 +88,5 @@
 // Services & Pricing: Build About Nexora section layout highlighting Karachi headquarters
 
 // Services & Pricing: Add 4-step delivery process timeline (Discovery, Prototyping, AI, Launch)
+
+// Services & Pricing: Add company metrics and uptime SLA counters to About section

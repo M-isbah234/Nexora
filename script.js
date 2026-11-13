@@ -41,3 +41,4 @@
 // Tab Sheet logic: Highlight Pro plan as featured tier with gradient border and badge
 // Tab Sheet logic: Build About Nexora section layout highlighting Karachi headquarters
 // Tab Sheet logic: Add 4-step delivery process timeline (Discovery, Prototyping, AI, Launch)
+// Tab Sheet logic: Add company metrics and uptime SLA counters to About section
