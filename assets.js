@@ -92,3 +92,5 @@
 // Services & Pricing: Add company metrics and uptime SLA counters to About section
 
 // Services & Pricing: Integrate Formspree contact form with name, email, and service fields
+
+// Services & Pricing: Add direct contact channel cards with WhatsApp, email, and location

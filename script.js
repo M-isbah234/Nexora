@@ -43,3 +43,4 @@
 // Tab Sheet logic: Add 4-step delivery process timeline (Discovery, Prototyping, AI, Launch)
 // Tab Sheet logic: Add company metrics and uptime SLA counters to About section
 // Tab Sheet logic: Integrate Formspree contact form with name, email, and service fields
+// Tab Sheet logic: Add direct contact channel cards with WhatsApp, email, and location
