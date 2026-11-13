@@ -86,3 +86,5 @@
 // Services & Pricing: Highlight Pro plan as featured tier with gradient border and badge
 
 // Services & Pricing: Build About Nexora section layout highlighting Karachi headquarters
+
+// Services & Pricing: Add 4-step delivery process timeline (Discovery, Prototyping, AI, Launch)
