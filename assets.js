@@ -82,3 +82,5 @@
 // Services & Pricing: Add direct WhatsApp message pre-fill URLs for all pricing tiers
 
 // Services & Pricing: Implement dynamic pricing card rendering function in script.js
+
+// Services & Pricing: Highlight Pro plan as featured tier with gradient border and badge
