@@ -34,3 +34,4 @@
 // Tab Sheet logic: Implement dynamic services grid rendering function in script.js
 // Tab Sheet logic: Style service cards with border glow and hover elevation
 // Tab Sheet logic: Add deliverables checklist with custom check icons for each service
+// Tab Sheet logic: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)

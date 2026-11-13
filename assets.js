@@ -74,3 +74,5 @@
 // Services & Pricing: Style service cards with border glow and hover elevation
 
 // Services & Pricing: Add deliverables checklist with custom check icons for each service
+
+// Services & Pricing: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)
