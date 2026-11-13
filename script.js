@@ -36,3 +36,4 @@
 // Tab Sheet logic: Add deliverables checklist with custom check icons for each service
 // Tab Sheet logic: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)
 // Tab Sheet logic: Configure transparent pricing ranges and deliverable items per plan
+// Tab Sheet logic: Add direct WhatsApp message pre-fill URLs for all pricing tiers

@@ -78,3 +78,5 @@
 // Services & Pricing: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)
 
 // Services & Pricing: Configure transparent pricing ranges and deliverable items per plan
+
+// Services & Pricing: Add direct WhatsApp message pre-fill URLs for all pricing tiers
