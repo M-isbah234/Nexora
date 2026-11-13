@@ -35,3 +35,4 @@
 // Tab Sheet logic: Style service cards with border glow and hover elevation
 // Tab Sheet logic: Add deliverables checklist with custom check icons for each service
 // Tab Sheet logic: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)
+// Tab Sheet logic: Configure transparent pricing ranges and deliverable items per plan

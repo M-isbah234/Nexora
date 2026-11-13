@@ -76,3 +76,5 @@
 // Services & Pricing: Add deliverables checklist with custom check icons for each service
 
 // Services & Pricing: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)
+
+// Services & Pricing: Configure transparent pricing ranges and deliverable items per plan
