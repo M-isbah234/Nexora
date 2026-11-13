@@ -39,3 +39,4 @@
 // Tab Sheet logic: Add direct WhatsApp message pre-fill URLs for all pricing tiers
 // Tab Sheet logic: Implement dynamic pricing card rendering function in script.js
 // Tab Sheet logic: Highlight Pro plan as featured tier with gradient border and badge
+// Tab Sheet logic: Build About Nexora section layout highlighting Karachi headquarters
