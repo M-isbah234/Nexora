@@ -37,3 +37,4 @@
 // Tab Sheet logic: Define PRICING_DATA plans in assets.js (Basic, Pro, Enterprise)
 // Tab Sheet logic: Configure transparent pricing ranges and deliverable items per plan
 // Tab Sheet logic: Add direct WhatsApp message pre-fill URLs for all pricing tiers
+// Tab Sheet logic: Implement dynamic pricing card rendering function in script.js

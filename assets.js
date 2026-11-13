@@ -80,3 +80,5 @@
 // Services & Pricing: Configure transparent pricing ranges and deliverable items per plan
 
 // Services & Pricing: Add direct WhatsApp message pre-fill URLs for all pricing tiers
+
+// Services & Pricing: Implement dynamic pricing card rendering function in script.js
