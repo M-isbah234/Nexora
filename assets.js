@@ -90,3 +90,5 @@
 // Services & Pricing: Add 4-step delivery process timeline (Discovery, Prototyping, AI, Launch)
 
 // Services & Pricing: Add company metrics and uptime SLA counters to About section
+
+// Services & Pricing: Integrate Formspree contact form with name, email, and service fields
