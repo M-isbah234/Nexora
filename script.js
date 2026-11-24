@@ -68,3 +68,4 @@
 // Refinement: Fix SVG XML entity escaping for & characters in project preview mockups
 // Refinement: Add automated &amp; entity sanitization in makeSvgUri helper function
 // Refinement: Implement quick fuzzy search modal (Cmd+K) for rapid project discovery
+// Refinement: Update README.md with comprehensive 3D portfolio feature documentation
