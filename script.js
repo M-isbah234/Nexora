@@ -46,3 +46,4 @@
 // Tab Sheet logic: Add direct contact channel cards with WhatsApp, email, and location
 // Refinement: Refactor navigation architecture to use dedicated tab sheet overlays
 // Refinement: Lock root viewport to 100vh with overflow: hidden to eliminate body scrolling
+// Refinement: Create tab-sheet container styles with backdrop-filter blur and dark overlay
