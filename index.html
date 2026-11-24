@@ -2,36 +2,414 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nexora Solvex | Step 7</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nexora Solvex | Modern 3D Portfolio & Digital Systems</title>
+    <meta name="description" content="Nexora Solvex is a Karachi-based AI startup crafting high-conversion websites, conversational AI chatbots, autonomous agents, Canva branding, customer support desks, and CRM dashboards.">
+    <meta name="keywords" content="Nexora, Web Development, AI Chatbots, AI Agents, Canva Design, Posters, CRM Dashboard, Karachi Pakistan, Digital Systems">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Nexora Solvex | Modern 3D Portfolio & AI Digital Systems">
+    <meta property="og:description" content="Explore our 3D Cover Flow portfolio featuring full-stack websites, conversational chatbots, autonomous agents, and analytics dashboards.">
+    <meta property="og:image" content="https://res.cloudinary.com/djaonuvzx/image/upload/v1790244415/ChatGPT_Image_Sep_24_2026_03_06_36_PM_qgkrhw.png">
+    <meta property="og:url" content="https://nexora-five-topaz.vercel.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="./favicon.png" type="image/png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- Add initial reset stylesheet and base typography rules -->
+
+    <!-- ================================================================
+         AVAJEAN CANVAS STARFIELD BACKGROUND (TWINKLING STARS & SHOOTING STARS)
+         ================================================================ -->
+    <div id="bgfx" aria-hidden="true">
+        <canvas id="starCanvas"></canvas>
+        <div class="nebula-glow neb-top-left"></div>
+        <div class="nebula-glow neb-bottom-right"></div>
+    </div>
+
+    <!-- ================================================================
+         TOP NAVIGATION BAR (TAB-BASED ROUTING & OFFICIAL LOGO TOP-RIGHT)
+         ================================================================ -->
+    <header id="topNav">
+        <a href="javascript:void(0)" class="nav-brand" aria-label="Nexora Home">
+            <div class="nav-brand-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+            </div>
+            <span class="nav-brand-name">Nexora</span>
+            <span class="nav-brand-badge">Solvex</span>
+        </a>
+
+        <!-- Clean Navigation Tabs (No long scrolling; switches active view) -->
+        <nav class="nav-links" aria-label="Main Navigation">
+            <button type="button" class="nav-tab-btn active" data-tab="work">Work</button>
+            <button type="button" class="nav-tab-btn" data-tab="services">Services</button>
+            <button type="button" class="nav-tab-btn" data-tab="about">About</button>
+            <button type="button" class="nav-tab-btn" data-tab="pricing">Pricing</button>
+            <button type="button" class="nav-tab-btn" data-tab="contact">Contact</button>
+        </nav>
+
+        <div class="nav-actions">
+            <!-- Search Trigger Button -->
+            <button class="search-trigger-btn" id="searchTriggerBtn" title="Search Portfolio (Cmd+K)" aria-label="Search">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/>
+                </svg>
+                <span>Search</span>
+                <kbd>⌘K</kbd>
+            </button>
+
+            <!-- Hire Us CTA -->
+            <a href="https://wa.me/923151196495" target="_blank" rel="noopener noreferrer" class="cta-nav-btn">
+                <span>Hire Us</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+            </a>
+
+            <!-- Official Nexora Solvex Logo on the Top Right Corner -->
+            <a href="https://github.com/muhammadirtizakhan/Nexora" target="_blank" rel="noopener noreferrer" class="nav-official-logo" title="Nexora Solvex Official Brand" aria-label="Nexora Solvex Official Brand">
+                <img src="./favicon.png" alt="Nexora Solvex Official Logo" onerror="this.src='https://res.cloudinary.com/djaonuvzx/image/upload/v1790244415/ChatGPT_Image_Sep_24_2026_03_06_36_PM_qgkrhw.png'">
+            </a>
+
+            <!-- Mobile Navigation Toggle -->
+            <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Toggle Navigation Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+
+        <!-- ================================================================
+             HERO: 3D COVER FLOW PERSPECTIVE STAGE (AVAJEAN STYLE - NO ARROWS)
+             ================================================================ -->
+        <section id="coverFlowSection" aria-label="Portfolio Cover Flow">
+            
+            <!-- 3D Transform Stage -->
+            <div id="cflowStage"></div>
+
+            <!-- Active Project Title & Progress Indicator -->
+            <div class="cf-info-panel">
+                <div class="cf-info-category-tag" id="activeProjectTag">WEB APPLICATION</div>
+                <h1 class="cf-info-title" id="activeProjectTitle">Hot N Tasty Roll</h1>
+                <div class="cf-info-count" id="activeProjectCount">Live Production System • Karachi Pakistan</div>
+                <div class="cf-progress-bar">
+                    <div class="cf-progress-fill" id="cfProgressFill"></div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================================================================
+             FLOATING BOTTOM DOCK CONTROLS (AVAJEAN STYLE DOCK)
+             ================================================================ -->
+        <aside id="bottomDock" aria-label="Featured Projects Dock">
+            <div class="dock-info-label">
+                <span class="dock-category-current" id="dockCurrentProject">Hot N Tasty Roll</span>
+                <span class="dock-total-stats">6 PROJECTS • LIVE DELIVERIES</span>
+            </div>
+            <div class="dock-filters" id="dockFilters">
+                <!-- Dynamically populated filter pills from assets.js -->
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- ================================================================
+         TAB SHEETS OVERLAYS (DEDICATED MODALS - ZERO BODY SCROLLING)
+         ================================================================ -->
+
+    <!-- Tab Sheet: Services -->
+    <div id="sheet-services" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Services">
+        <div class="sheet-panel">
+            <div class="sheet-header">
+                <div class="sheet-title-group">
+                    <h3>Core Engineering Services</h3>
+                    <p>End-to-end web architecture, conversational AI, Canva branding, and CRM dashboards</p>
+                </div>
+                <button type="button" class="sheet-close-btn" aria-label="Close Services">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="sheet-body" id="servicesSheetBody">
+                <!-- Injected dynamically via script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Sheet: About -->
+    <div id="sheet-about" class="tab-sheet" role="dialog" aria-modal="true" aria-label="About Nexora">
+        <div class="sheet-panel">
+            <div class="sheet-header">
+                <div class="sheet-title-group">
+                    <h3>About Nexora Solvex</h3>
+                    <p>Karachi Born. Globally Driven. Engineering Proactive Digital Systems</p>
+                </div>
+                <button type="button" class="sheet-close-btn" aria-label="Close About">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="sheet-body" id="aboutSheetBody">
+                <div class="about-sheet-wrap">
+                    <div>
+                        <span class="section-tag">Karachi AI Startup</span>
+                        <h4 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--text-pure); margin-bottom: 14px;">Building Real Digital Infrastructure</h4>
+                        <p style="font-size: 14px; color: var(--color-lavender); line-height: 1.7; margin-bottom: 14px;">
+                            Founded in Karachi, Pakistan, Nexora Solvex helps ambitious businesses transition from fragile template websites into high-conversion automated digital systems.
+                        </p>
+                        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
+                            We integrate domain-trained AI chatbots, autonomous lead capture agents, high-impact Canva visual branding, and custom administrative CRM panels that generate measurable return on investment.
+                        </p>
+                        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                            <div style="background: rgba(14, 11, 29, 0.9); border: 1px solid var(--border-subtle); padding: 14px 18px; border-radius: 14px;">
+                                <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--color-lavender);">6+</div>
+                                <div style="font-size: 11px; font-weight: 700; color: var(--color-secondary); text-transform: uppercase;">Flagship Projects</div>
+                            </div>
+                            <div style="background: rgba(14, 11, 29, 0.9); border: 1px solid var(--border-subtle); padding: 14px 18px; border-radius: 14px;">
+                                <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--color-lavender);">99.9%</div>
+                                <div style="font-size: 11px; font-weight: 700; color: var(--color-secondary); text-transform: uppercase;">Uptime SLA</div>
+                            </div>
+                            <div style="background: rgba(14, 11, 29, 0.9); border: 1px solid var(--border-subtle); padding: 14px 18px; border-radius: 14px;">
+                                <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--color-lavender);">Karachi</div>
+                                <div style="font-size: 11px; font-weight: 700; color: var(--color-secondary); text-transform: uppercase;">Headquarters</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(14, 11, 29, 0.85); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 24px;">
+                        <h4 style="font-family: var(--font-heading); font-size: 17px; font-weight: 700; color: var(--text-pure); margin-bottom: 16px;">Our 4-Step Delivery Process</h4>
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">1</div>
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Discovery & Workflow Audit</div>
+                                    <div style="font-size: 12.5px; color: var(--text-muted);">We analyze your business workflows, audience demographics, and competition.</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">2</div>
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Architecture & UI/UX Prototyping</div>
+                                    <div style="font-size: 12.5px; color: var(--text-muted);">Crafting interactive mockups, design tokens, and modular database schemas.</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">3</div>
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">AI Integration & Full-Stack Development</div>
+                                    <div style="font-size: 12.5px; color: var(--text-muted);">Connecting LLMs, autonomous agents, backend controllers, and high-speed Vercel hosting.</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">4</div>
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Deployment & Continuous Optimization</div>
+                                    <div style="font-size: 12.5px; color: var(--text-muted);">Search engine indexing, analytics setup, and ongoing proactive maintenance.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Sheet: Pricing -->
+    <div id="sheet-pricing" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Pricing">
+        <div class="sheet-panel">
+            <div class="sheet-header">
+                <div class="sheet-title-group">
+                    <h3>Predictable Investment Plans</h3>
+                    <p>Transparent project pricing with zero hidden fees</p>
+                </div>
+                <button type="button" class="sheet-close-btn" aria-label="Close Pricing">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="sheet-body" id="pricingSheetBody">
+                <!-- Injected dynamically via script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Sheet: Contact -->
+    <div id="sheet-contact" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Contact">
+        <div class="sheet-panel">
+            <div class="sheet-header">
+                <div class="sheet-title-group">
+                    <h3>Contact Nexora Solvex</h3>
+                    <p>Direct communication with our Karachi engineering and design team</p>
+                </div>
+                <button type="button" class="sheet-close-btn" aria-label="Close Contact">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="sheet-body">
+                <div class="contact-sheet-wrap">
+                    <div>
+                        <span class="section-tag">Direct Communication</span>
+                        <h4 style="font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--text-pure); margin-bottom: 12px;">Let's Build Something Remarkable</h4>
+                        <p style="font-size: 13.5px; color: var(--color-lavender); line-height: 1.6; margin-bottom: 24px;">
+                            Have an idea for a web platform, chatbot, autonomous agent, or complete automation workflow? Drop us a message or chat with us directly on WhatsApp.
+                        </p>
+                        <div class="contact-channels">
+                            <div class="contact-channel-item">
+                                <div class="contact-channel-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6.08 6.08l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+                                </div>
+                                <div class="contact-channel-text">
+                                    <span>Phone & WhatsApp</span>
+                                    <p>+92 315 1196495</p>
+                                </div>
+                            </div>
+                            <div class="contact-channel-item">
+                                <div class="contact-channel-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </div>
+                                <div class="contact-channel-text">
+                                    <span>Direct Email</span>
+                                    <p>nexoradevx@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-channel-item">
+                                <div class="contact-channel-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <div class="contact-channel-text">
+                                    <span>Location</span>
+                                    <p>Karachi, Pakistan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-panel">
+                        <form action="https://formspree.io/f/mnjlloaj" method="POST" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="formName">Full Name</label>
+                                    <input type="text" id="formName" name="name" class="form-input" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formEmail">Email Address</label>
+                                    <input type="email" id="formEmail" name="email" class="form-input" placeholder="name@company.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="formService">Requested Service</label>
+                                <input type="text" id="formService" name="service" class="form-input" placeholder="e.g. Website + AI Chatbot, CRM Dashboard, Canva Posters">
+                            </div>
+                            <div class="form-group">
+                                <label for="formMessage">Project Details</label>
+                                <textarea id="formMessage" name="message" class="form-input" rows="4" placeholder="Tell us about your project vision, target timeline, and goals..." required style="resize: vertical;"></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-btn">
+                                <span>Send Message</span>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Sheet: Project Detail View -->
+    <div id="sheet-project" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Project Details">
+        <div class="sheet-panel">
+            <div class="sheet-header">
+                <div class="sheet-title-group">
+                    <h3>Project Showcase</h3>
+                    <p>Live delivery architecture, technology stack, and demonstration</p>
+                </div>
+                <button type="button" class="sheet-close-btn" aria-label="Close Project Details">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="sheet-body" id="projectSheetBody">
+                <!-- Dynamically injected via script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Search Modal (⌘K Fuzzy Search) -->
+    <div id="searchModal" role="dialog" aria-modal="true" aria-label="Search Projects">
+        <div class="search-box">
+            <div class="search-input-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+                <input type="search" id="searchInput" class="search-input" placeholder="Search websites, chatbots, agents, posters, CRM..." autocomplete="off" spellcheck="false">
+                <button type="button" id="searchEscBtn" class="search-esc-btn">ESC</button>
+            </div>
+            <div class="search-results-list" id="searchResults">
+                <!-- Search results rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Action Button -->
+    <a href="https://wa.me/923151196495" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <!-- Floating Chatbot Action Button -->
+    <button class="chatbot-fab" id="chatbotToggle" title="Ask Nexora AI" aria-label="Open Nexora AI Chatbot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+    </button>
+
+    <!-- Nexora AI Chatbot Widget (Zero Emojis) -->
+    <div class="chatbot-widget" id="chatbotWidget" aria-hidden="true" role="dialog" aria-label="Nexora AI Chat">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <div>
+                    <div class="chatbot-title">Nexora AI</div>
+                    <div class="chatbot-status"><span class="status-dot"></span> Online</div>
+                </div>
+            </div>
+            <button class="chatbot-close-btn" id="chatbotClose" aria-label="Close Chatbot">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="chat-msg bot">
+                <div class="chat-bubble">
+                    Hello. I am the Nexora AI digital assistant. How can we help automate or scale your web infrastructure today?
+                </div>
+            </div>
+            <div class="chat-quick-btns">
+                <button onclick="sendQuickMsg('What services do you offer?')">Services</button>
+                <button onclick="sendQuickMsg('What are your pricing plans?')">Pricing</button>
+                <button onclick="sendQuickMsg('Show me your projects')">Projects</button>
+                <button onclick="sendQuickMsg('How can I contact you?')">Contact</button>
+            </div>
+        </div>
+        <div class="chatbot-input-row">
+            <input type="text" id="chatInput" class="chatbot-input" placeholder="Ask anything about our work..." autocomplete="off">
+            <button class="chatbot-send" id="chatSend" aria-label="Send Message">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
-<!-- Project Card Component: Create makeSvgUri helper function to generate authentic UI preview mockups -->
-<!-- Project Card Component: Design authentic SVG preview mockup for Hot N Tasty Roll restaurant -->
-<!-- Project Card Component: Add Hot N Tasty Roll flagship project entry with live Vercel URL -->
-<!-- Project Card Component: Include AI food concierge preview within Hot N Tasty Roll SVG mockup -->
-<!-- Project Card Component: Design authentic SVG preview mockup for Aetheric Store luxury e-commerce -->
-<!-- Project Card Component: Add Aetheric Store flagship project entry with live Vercel deployment link -->
-<!-- Project Card Component: Incorporate product showcase and admin panel indicators in Aetheric mockup -->
-<!-- Project Card Component: Design authentic SVG preview mockup for QuickStay hotel reservation platform -->
-<!-- Project Card Component: Add QuickStay flagship project entry with live Vercel deployment link -->
-<!-- Project Card Component: Include search booking bar and room cards in QuickStay SVG mockup -->
-<!-- Project Card Component: Design authentic SVG preview mockup for Saud Emporium couture boutique -->
-<!-- Project Card Component: Add Saud Emporium flagship project entry with live client deployment link -->
-<!-- Project Card Component: Incorporate EasyPaisa checkout bar and catalog tiles in Saud Emporium mockup -->
-<!-- Project Card Component: Design authentic SVG preview mockup for MedixWeb AI hospital assistant -->
-<!-- Project Card Component: Add MedixWeb flagship project entry with live Vercel deployment link -->
-<!-- Project Card Component: Include AI clinical diagnosis input box in MedixWeb SVG mockup -->
-<!-- Project Card Component: Design authentic SVG preview mockup for Edusity university LMS platform -->
-<!-- Project Card Component: Add Edusity flagship project entry with live Vercel deployment link -->
-<!-- Project Card Component: Incorporate course cards and campus portal layout in Edusity SVG mockup -->
-<!-- Project Card Component: Assemble FLAGSHIP_PROJECTS array with complete tags, tech stack, and links -->
-<!-- Project Card Component: Render authentic preview images on Cover Flow 3D cards -->
-<!-- Project Card Component: Add project badge overlays (LIVE PRODUCTION, CLIENT DELIVERED) -->
-<!-- Project Card Component: Implement click handler to open project showcase modal -->
-<!-- Project Card Component: Build project detail sheet modal layout with preview image and tech tags -->
-<!-- Project Card Component: Add live deployment and video demo action buttons to project modal -->
-<!-- Project Card Component: Add keyboard ESC key listener to dismiss project detail modal -->
-<!-- Project Card Component: Update bottom dock to display all 6 flagship project title pills -->

@@ -1,124 +1,1585 @@
-/* Nexora Solvex Base Styles - Commit 7: Add initial reset stylesheet and base typography rules */
+/* ==========================================================================
+   NEXORA SOLVEX — 3D COVER FLOW PORTFOLIO STYLESHEET
+   AvaJean Architecture | Black Starfield | Purple Tokens: #2A1E4D, #5A3B8C, #8B7CC7, #C9C2E3, #3A3A52
+   Zero Emojis | Fixed Viewport (Tab Sheets for Services, About, Pricing, Contact)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 :root {
-    --color-bg: #0E0B1D;
-    --color-surface: #2A1E4D;
+    /* Pure Black Background as requested */
+    --color-bg: #000000;          
+    
+    /* User Color Tokens */
+    --color-surface: #2A1E4D;     /* Rich royal purple container & card surfaces */
+    --color-primary: #5A3B8C;     /* Vibrant brand purple for buttons & glowing accents */
+    --color-secondary: #8B7CC7;   /* Lilac for borders, tags, active bars, and highlights */
+    --color-lavender: #C9C2E3;    /* Soft lavender for headings & crisp typography */
+    --color-slate: #3A3A52;       /* Muted slate purple for pill backgrounds & sub-cards */
+    
+    --text-pure: #FFFFFF;
+    --text-muted: rgba(201, 194, 227, 0.72);
+    --text-dim: rgba(201, 194, 227, 0.45);
+    
+    --border-subtle: rgba(139, 124, 199, 0.22);
+    --border-strong: rgba(139, 124, 199, 0.45);
+    --glass-bg: rgba(42, 30, 77, 0.75);
+    --glass-blur: blur(16px);
+    
+    /* Cover Flow Dimensions - Balanced with generous breathing room */
+    --cw: 280px;
+    --ch: 375px;
+    --cfy: 42vh;
+    --sh: 0;
+
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
 }
-/* Implement top navigation bar skeleton and brand logo mark */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add navigation link elements for Work, Services, and About */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Style desktop header navigation with glassmorphism backdrop */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add mobile menu toggle button and responsive breakpoints */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Create initial assets directory and add official branding logo */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add favicon and manifest link tags to index.html */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Set up backend directory structure with Express server scaffold */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add backend server.js with basic health check endpoint */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Configure package.json and dependencies for backend service */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add Open Graph metadata and Twitter card tags to index.html */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Set up SEO keywords and meta description for Nexora Solvex */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add robots.txt with search crawler indexing rules */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Add initial sitemap.xml with canonical domain URLs */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Implement footer branding layout and copyright notes */
-#topNav { display: flex; align-items: center; justify-content: space-between; }
-/* Create assets.js module to manage project and brand configurations */
-#coverFlowSection { perspective: 1350px; }
-/* Define BRAND_INFO object with contact channels and WhatsApp metadata */
-#coverFlowSection { perspective: 1350px; }
-/* Create layout container for hero showcase section */
-#coverFlowSection { perspective: 1350px; }
-/* Add basic Cover Flow stage element and perspective styling */
-#coverFlowSection { perspective: 1350px; }
-/* Implement CSS 3D transform utilities and card container styles */
-#coverFlowSection { perspective: 1350px; }
-/* Add card depth shadows and border highlights in style.css */
-#coverFlowSection { perspective: 1350px; }
-/* Set up initial script.js module with event listener bindings */
-#coverFlowSection { perspective: 1350px; }
-/* Add initial project data array with basic portfolio entries */
-#coverFlowSection { perspective: 1350px; }
-/* Implement card element creation loop in script.js */
-#coverFlowSection { perspective: 1350px; }
-/* Add basic 3D card positioning calculation along X and Z axes */
-#coverFlowSection { perspective: 1350px; }
-/* Style active card title and category badge in info panel */
-#coverFlowSection { perspective: 1350px; }
-/* Add progress bar container and fill calculation */
-#coverFlowSection { perspective: 1350px; }
-/* Implement pointer event listeners for drag interaction on stage */
-#coverFlowSection { perspective: 1350px; }
-/* Add smooth interpolation for card translation between indices */
-#coverFlowSection { perspective: 1350px; }
-/* Implement mouse wheel scrolling support for Cover Flow carousel */
-#coverFlowSection { perspective: 1350px; }
-/* Add keyboard arrow key navigation (ArrowLeft / ArrowRight) */
-#coverFlowSection { perspective: 1350px; }
-/* Implement floating bottom dock filter bar skeleton */
-#coverFlowSection { perspective: 1350px; }
-/* Style dock filter pills with subtle borders and hover states */
-#coverFlowSection { perspective: 1350px; }
-/* Add click handler to dock pills for direct card navigation */
-#coverFlowSection { perspective: 1350px; }
-/* Synchronize active dock pill with current Cover Flow card index */
-#coverFlowSection { perspective: 1350px; }
-/* Add responsive adjustments for tablets and smaller screens */
-#coverFlowSection { perspective: 1350px; }
-/* Introduce AvaJean interactive canvas starfield engine */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Implement dynamic star distribution and sine-wave twinkling */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Add subtle mouse pointer parallax drift to canvas background */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Implement procedural shooting star animation algorithm */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Add ambient nebula glow accents to canvas background corners */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Optimize starfield requestAnimationFrame loop for 60fps performance */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Refactor 3D Cover Flow physics with inertia and momentum damping */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Implement floor reflection effect with gradient mask below cards */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Tune card rotation angles and side spacing for realistic Cover Flow depth */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Add pointer capture handling to prevent stuck drag states */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Refine card snapping physics to settle cleanly on nearest integer index */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Add subtle visual feedback on card transitions */
-#bgfx canvas { position: absolute; inset: 0; }
-/* Refinement: Refactor navigation architecture to use dedicated tab sheet overlays */
-/* Refinement: Lock root viewport to 100vh with overflow: hidden to eliminate body scrolling */
-/* Refinement: Create tab-sheet container styles with backdrop-filter blur and dark overlay */
-/* Refinement: Add smooth slide-up entrance animation for tab-sheet panels */
-/* Refinement: Convert Services section into slide-up tab sheet (#sheet-services) */
-/* Refinement: Convert About section into slide-up tab sheet (#sheet-about) */
-/* Refinement: Convert Pricing section into slide-up tab sheet (#sheet-pricing) */
-/* Refinement: Convert Contact section into slide-up tab sheet (#sheet-contact) */
-/* Refinement: Implement initTabSheets router and active navigation state manager */
-/* Refinement: Add close buttons and backdrop click handlers to dismiss tab sheets */
-/* Refinement: Ensure ESC key closes any active tab sheet and restores Work view */
-/* Refinement: Remove left and right arrow buttons from Cover Flow work section */
-/* Refinement: Scale Cover Flow cards to --cw: 280px and --ch: 375px for generous breathing room */
-/* Refinement: Enforce exact color palette tokens (#0E0B1D, #2A1E4D, #5A3B8C, #8B7CC7, #C9C2E3, #3A3A52) */
-/* Refinement: Apply pure black (#000000) canvas background for AvaJean starfield */
-/* Refinement: Add official circular Nexora Solvex logo to the top right corner of the header */
-/* Refinement: Style top-right official logo with glowing border and scaling hover effect */
-/* Refinement: Completely audit and eliminate all emojis across UI text, headings, and data */
-/* Refinement: Add floating WhatsApp action button with direct chat link */
-/* Refinement: Implement Nexora AI chatbot assistant floating widget and reply generator */
-/* Refinement: Stack WhatsApp and chatbot FABs vertically at right: 24px to prevent dock overlap */
-/* Refinement: Fix SVG XML entity escaping for & characters in project preview mockups */
-/* Refinement: Add automated &amp; entity sanitization in makeSvgUri helper function */
-/* Refinement: Implement quick fuzzy search modal (Cmd+K) for rapid project discovery */
-/* Refinement: Update README.md with comprehensive 3D portfolio feature documentation */
+
+/* RESET & BASE */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* No long vertical page scrolling */
+    background-color: var(--color-bg);
+    color: var(--color-lavender);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+}
+
+/* ==========================================================================
+   AVAJEAN INTERACTIVE STARFIELD BACKGROUND
+   ========================================================================== */
+
+#bgfx {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: #000000;
+}
+
+#bgfx canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+}
+
+/* Subtle nebula glow in space */
+.nebula-glow {
+    position: absolute;
+    width: 60vw;
+    height: 60vh;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.14;
+    pointer-events: none;
+}
+
+.neb-top-left {
+    top: -20vh;
+    left: -10vw;
+    background: radial-gradient(circle, var(--color-primary), transparent 70%);
+}
+
+.neb-bottom-right {
+    bottom: -15vh;
+    right: -10vw;
+    background: radial-gradient(circle, var(--color-surface), transparent 75%);
+}
+
+/* ==========================================================================
+   TOP NAVIGATION BAR
+   ========================================================================== */
+
+#topNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5vw;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-pure);
+    cursor: pointer;
+}
+
+.nav-brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--color-surface), var(--color-primary));
+    border: 1px solid var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px rgba(90, 59, 140, 0.4);
+}
+
+.nav-brand-logo svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-lavender);
+}
+
+.nav-brand-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--text-pure);
+}
+
+.nav-brand-badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: rgba(90, 59, 140, 0.35);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-lavender);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Navigation Tab Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.nav-tab-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    padding: 6px 0;
+}
+
+.nav-tab-btn:hover, .nav-tab-btn.active {
+    color: var(--text-pure);
+}
+
+.nav-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-secondary);
+    box-shadow: 0 0 10px var(--color-secondary);
+    border-radius: 2px;
+}
+
+/* Nav Actions & Official Logo on Top Right */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.search-trigger-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(58, 58, 82, 0.45);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 6px 12px;
+    color: var(--color-lavender);
+    cursor: pointer;
+    font-size: 12.5px;
+    transition: all 0.2s ease;
+}
+
+.search-trigger-btn * {
+    pointer-events: none;
+}
+
+.search-trigger-btn:hover {
+    border-color: var(--color-secondary);
+    background: rgba(58, 58, 82, 0.7);
+    color: var(--text-pure);
+}
+
+.search-trigger-btn kbd {
+    font-size: 9.5px;
+    font-family: var(--font-heading);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-subtle);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--color-lavender);
+}
+
+.cta-hire-btn {
+    background: linear-gradient(135deg, var(--color-primary), #754bb7);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(90, 59, 140, 0.45);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cta-hire-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(90, 59, 140, 0.65);
+    border-color: var(--color-lavender);
+}
+
+/* Official Nexora Solvex Logo on Top Right Corner */
+.nav-official-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-strong);
+    background: rgba(42, 30, 77, 0.5);
+    overflow: hidden;
+    box-shadow: 0 0 16px rgba(90, 59, 140, 0.5);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.nav-official-logo:hover {
+    transform: scale(1.08);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 22px rgba(139, 124, 199, 0.7);
+}
+
+.nav-official-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.nav-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-lavender);
+    cursor: pointer;
+    padding: 6px;
+}
+
+/* ==========================================================================
+   3D COVER FLOW STAGE (HERO VIEW)
+   ========================================================================== */
+
+#coverFlowSection {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#cflowStage {
+    position: absolute;
+    inset: 0;
+    perspective: 1350px;
+    perspective-origin: 50% var(--cfy, 42vh);
+    transform-style: preserve-3d;
+    cursor: grab;
+    touch-action: pan-y;
+}
+
+#cflowStage.grabbing {
+    cursor: grabbing;
+}
+
+/* The Cover Flow Cards */
+.cf-card {
+    position: absolute;
+    left: 50%;
+    top: var(--cfy, 42vh);
+    width: var(--cw);
+    height: var(--ch);
+    margin-top: calc(var(--ch) / -2);
+    margin-left: calc(var(--cw) / -2);
+    border-radius: 18px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--border-subtle);
+    will-change: transform;
+    overflow: hidden;
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(90, 59, 140, 0.18);
+    /* Subtle Floor Reflection */
+    -webkit-box-reflect: below 6px linear-gradient(transparent 85%, rgba(0, 0, 0, 0.3));
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.cf-card:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 24px 55px -8px rgba(0, 0, 0, 0.9), 0 0 35px rgba(139, 124, 199, 0.3);
+}
+
+.cf-card.active {
+    border-color: var(--color-secondary);
+    box-shadow: 0 28px 65px -8px rgba(0, 0, 0, 0.95), 0 0 45px rgba(90, 59, 140, 0.45);
+}
+
+/* Dark gradient depth falloff on side cards */
+.cf-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, var(--sh, 0)), transparent 70%);
+    pointer-events: none;
+    border-radius: 18px;
+    transition: opacity 0.2s ease;
+}
+
+.cf-card.r::after {
+    background: linear-gradient(270deg, rgba(0, 0, 0, var(--sh, 0)), transparent 70%);
+}
+
+/* Project Card Preview Image Container */
+.cf-card-preview {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #0E0B1D;
+    overflow: hidden;
+}
+
+.cf-card-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.cf-card:hover .cf-card-preview img {
+    transform: scale(1.03);
+}
+
+/* Card Badge Tag (e.g. "RESTAURANT & AI", "HOTEL BOOKING") */
+.cf-card-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-lavender);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 4px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+/* Hover "View Details" hint */
+.cf-card-hint {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    z-index: 5;
+    background: rgba(42, 30, 77, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-secondary);
+    color: #FFFFFF;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.25s ease;
+}
+
+.cf-card.active:hover .cf-card-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Active Category/Project Info */
+.cf-info-panel {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(var(--cfy, 42vh) + var(--ch) / 2 + 50px);
+    text-align: center;
+    pointer-events: none;
+    width: min(600px, 92vw);
+    z-index: 25;
+}
+
+.cf-info-category-tag {
+    font-family: var(--font-heading);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    margin-bottom: 3px;
+    text-shadow: 0 0 10px rgba(139, 124, 199, 0.5);
+}
+
+.cf-info-title {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 800;
+    color: var(--text-pure);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.cf-info-count {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    font-weight: 500;
+}
+
+/* Progress Indicator Bar */
+.cf-progress-bar {
+    position: relative;
+    width: 200px;
+    height: 3px;
+    background: rgba(58, 58, 82, 0.6);
+    border-radius: 3px;
+    margin: 14px auto 0;
+    overflow: hidden;
+}
+
+.cf-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 16.66%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    box-shadow: 0 0 10px var(--color-secondary);
+    border-radius: 3px;
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   FLOATING BOTTOM DOCK (AvaJean Style Dock)
+   ========================================================================== */
+
+#bottomDock {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(14, 11, 29, 0.88);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-subtle);
+    border-radius: 28px;
+    padding: 7px 16px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(90, 59, 140, 0.2);
+    width: auto;
+    max-width: 95vw;
+}
+
+.dock-info-label {
+    display: flex;
+    flex-direction: column;
+    padding-right: 14px;
+    border-right: 1px solid rgba(139, 124, 199, 0.2);
+    white-space: nowrap;
+}
+
+.dock-category-current {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 12.5px;
+    color: var(--text-pure);
+}
+
+.dock-total-stats {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--color-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.dock-filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.dock-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.dock-pill {
+    background: var(--color-slate);
+    border: 1px solid transparent;
+    color: var(--color-lavender);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 13px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.dock-pill:hover {
+    background: rgba(90, 59, 140, 0.4);
+    color: var(--text-pure);
+    border-color: rgba(139, 124, 199, 0.3);
+}
+
+.dock-pill.active {
+    background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+    color: #FFFFFF;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 14px rgba(90, 59, 140, 0.6);
+}
+
+/* ==========================================================================
+   TAB SHEETS SYSTEM (SERVICES, ABOUT, PRICING, CONTACT, PROJECT DETAILS)
+   No Long Scrolling | Dedicated Overlay Sheets with Clean Close
+   ========================================================================== */
+
+.tab-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(14px);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tab-sheet.open {
+    display: flex;
+    opacity: 1;
+}
+
+.sheet-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--border-strong);
+    border-bottom: none;
+    border-radius: 26px 26px 0 0;
+    width: min(1040px, 96vw);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.9);
+    transform: translateY(40px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-sheet.open .sheet-panel {
+    transform: translateY(0);
+}
+
+.sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(22, 17, 46, 0.95);
+    flex-shrink: 0;
+}
+
+.sheet-title-group h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-pure);
+}
+
+.sheet-title-group p {
+    font-size: 13px;
+    color: var(--color-secondary);
+}
+
+.sheet-close-btn {
+    background: var(--color-slate);
+    border: 1px solid var(--border-subtle);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-lavender);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sheet-close-btn:hover {
+    background: var(--color-primary);
+    color: #FFFFFF;
+    transform: rotate(90deg);
+}
+
+.sheet-body {
+    padding: 28px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* Services Grid inside Sheet */
+.services-sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 20px;
+}
+
+.service-sheet-card {
+    background: rgba(14, 11, 29, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s ease;
+}
+
+.service-sheet-card:hover {
+    border-color: var(--color-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.service-card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.service-card-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-pure);
+    margin-bottom: 8px;
+}
+
+.service-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.service-deliverables-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: auto;
+    border-top: 1px solid rgba(139, 124, 199, 0.15);
+    padding-top: 14px;
+}
+
+.service-deliverables-list li {
+    font-size: 12px;
+    color: var(--color-lavender);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.service-deliverables-list li::before {
+    content: '-';
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* About Grid inside Sheet */
+.about-sheet-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.about-highlight-box {
+    background: rgba(14, 11, 29, 0.8);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.about-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.about-metric-card {
+    background: rgba(42, 30, 77, 0.6);
+    border: 1px solid var(--border-subtle);
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.about-metric-val {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--color-lavender);
+}
+
+.about-metric-lbl {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+}
+
+/* Pricing Grid inside Sheet */
+.pricing-sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.pricing-sheet-card {
+    background: rgba(14, 11, 29, 0.85);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.pricing-sheet-card.featured {
+    border-color: var(--color-secondary);
+    background: linear-gradient(180deg, rgba(58, 42, 107, 0.7), rgba(14, 11, 29, 0.9));
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(90, 59, 140, 0.3);
+}
+
+.pricing-tier-name {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-pure);
+}
+
+.pricing-best-for {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    min-height: 36px;
+}
+
+.pricing-amount {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--color-lavender);
+    margin: 16px 0 14px;
+}
+
+.pricing-features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex: 1;
+}
+
+.pricing-features-list li {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+}
+
+.pricing-features-list li::before {
+    content: '-';
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+.pricing-action-btn {
+    background: var(--color-slate);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-pure);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 11px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.pricing-sheet-card.featured .pricing-action-btn,
+.pricing-action-btn:hover {
+    background: linear-gradient(135deg, var(--color-primary), #754bb7);
+    border-color: var(--color-secondary);
+    box-shadow: 0 4px 16px rgba(90, 59, 140, 0.5);
+}
+
+/* Contact Wrap inside Sheet */
+.contact-sheet-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 32px;
+}
+
+.contact-channels-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.contact-item-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(14, 11, 29, 0.7);
+    border: 1px solid var(--border-subtle);
+    padding: 14px 18px;
+    border-radius: 14px;
+}
+
+.contact-item-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.contact-item-info span {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-secondary);
+    display: block;
+}
+
+.contact-item-info p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-pure);
+}
+
+.contact-form-col form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-field label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--color-lavender);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-ctrl {
+    background: rgba(14, 11, 29, 0.8);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: var(--text-pure);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-ctrl:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 12px rgba(139, 124, 199, 0.35);
+}
+
+.form-btn-submit {
+    background: linear-gradient(135deg, var(--color-primary), #754bb7);
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: 0.05em;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(90, 59, 140, 0.5);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.form-btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(90, 59, 140, 0.7);
+}
+
+/* Individual Project Detail Viewer Sheet */
+.project-detail-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.project-detail-media {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: #0E0B1D;
+    max-height: 480px;
+}
+
+.project-detail-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.project-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.project-detail-badge {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(90, 59, 140, 0.35);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-lavender);
+}
+
+.project-detail-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-pure);
+    line-height: 1.2;
+}
+
+.project-detail-subtitle {
+    font-size: 14px;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+.project-detail-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.project-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.project-tag-pill {
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(58, 58, 82, 0.6);
+    color: var(--color-lavender);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(139, 124, 199, 0.2);
+}
+
+.project-detail-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.action-link-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.action-link-btn.primary {
+    background: var(--color-primary);
+    color: #FFFFFF;
+    border: 1px solid var(--color-secondary);
+}
+
+.action-link-btn.primary:hover {
+    background: #6f47af;
+    box-shadow: 0 0 15px rgba(139, 124, 199, 0.5);
+}
+
+.action-link-btn.secondary {
+    background: var(--color-slate);
+    color: var(--color-lavender);
+    border: 1px solid var(--border-subtle);
+}
+
+.action-link-btn.secondary:hover {
+    background: rgba(90, 59, 140, 0.4);
+    color: #FFFFFF;
+}
+
+/* ==========================================================================
+   QUICK SEARCH MODAL
+   ========================================================================== */
+
+#searchModal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(14px);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12vh 16px 20px;
+}
+
+#searchModal.open {
+    display: flex;
+}
+
+.search-box {
+    width: min(640px, 100%);
+    max-height: 72vh;
+    background: var(--color-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), 0 0 40px rgba(90, 59, 140, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.search-input-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-input-row svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-secondary);
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    color: var(--text-pure);
+}
+
+.search-input::placeholder {
+    color: var(--text-dim);
+}
+
+.search-esc-btn {
+    background: var(--color-slate);
+    border: 1px solid var(--border-subtle);
+    color: var(--color-lavender);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 10.5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.search-results-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px;
+    max-height: 55vh;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease;
+    min-width: 0;
+}
+
+.search-item:hover {
+    background: rgba(90, 59, 140, 0.35);
+}
+
+.search-item-img {
+    width: 52px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #141029;
+    flex-shrink: 0;
+}
+
+.search-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-item-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-pure);
+}
+
+.search-item-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-item-badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   FLOATING ACTION BUTTONS & CHATBOT WIDGET
+   ========================================================================== */
+
+.whatsapp-fab {
+    position: fixed;
+    bottom: 76px;
+    right: 24px;
+    z-index: 85;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-fab:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-fab svg {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF;
+}
+
+.chatbot-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 85;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), #754bb7);
+    border: 1px solid var(--color-secondary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(90, 59, 140, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.chatbot-fab:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-fab svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Chatbot Widget Container */
+.chatbot-widget {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    z-index: 110;
+    width: 350px;
+    height: 500px;
+    max-height: calc(100vh - 110px);
+    background: var(--color-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(90, 59, 140, 0.3);
+}
+
+.chatbot-widget.open {
+    display: flex;
+}
+
+.chatbot-header {
+    background: rgba(22, 17, 46, 0.95);
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chatbot-header-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.chatbot-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-title {
+    font-family: var(--font-heading);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-pure);
+}
+
+.chatbot-status {
+    font-size: 10.5px;
+    color: #86efac;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #86efac;
+    box-shadow: 0 0 5px #86efac;
+}
+
+.chatbot-close-btn {
+    background: none;
+    border: none;
+    color: var(--color-lavender);
+    cursor: pointer;
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 14px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-msg {
+    display: flex;
+    flex-direction: column;
+    max-width: 84%;
+}
+
+.chat-msg.bot {
+    align-self: flex-start;
+}
+
+.chat-msg.user {
+    align-self: flex-end;
+}
+
+.chat-bubble {
+    padding: 9px 13px;
+    border-radius: 13px;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.chat-msg.bot .chat-bubble {
+    background: rgba(58, 58, 82, 0.6);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-pure);
+    border-bottom-left-radius: 2px;
+}
+
+.chat-msg.user .chat-bubble {
+    background: var(--color-primary);
+    color: #FFFFFF;
+    border-bottom-right-radius: 2px;
+}
+
+.chat-quick-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 6px;
+}
+
+.chat-quick-btns button {
+    background: rgba(58, 58, 82, 0.5);
+    border: 1px solid var(--border-subtle);
+    color: var(--color-lavender);
+    font-size: 10.5px;
+    padding: 4px 9px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.chat-quick-btns button:hover {
+    background: var(--color-primary);
+    color: #FFFFFF;
+}
+
+.chatbot-input-row {
+    padding: 9px 11px;
+    background: rgba(22, 17, 46, 0.95);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.chatbot-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--border-subtle);
+    border-radius: 9px;
+    padding: 7px 11px;
+    font-size: 12.5px;
+    color: var(--text-pure);
+    outline: none;
+}
+
+.chatbot-input:focus {
+    border-color: var(--color-secondary);
+}
+
+.chatbot-send {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--color-primary);
+    border: none;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLETS & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    #topNav .nav-links {
+        display: none;
+    }
+    
+    .nav-mobile-toggle {
+        display: block;
+    }
+    
+    .about-sheet-wrap,
+    .contact-sheet-wrap,
+    .project-detail-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    #bottomDock {
+        bottom: 12px;
+        padding: 5px 10px;
+        gap: 8px;
+    }
+    
+    .dock-info-label {
+        display: none;
+    }
+}
+
+@media (max-width: 760px) {
+    :root {
+        --cw: 240px;
+        --ch: 325px;
+        --cfy: 40vh;
+    }
+    
+    .cf-info-panel {
+        top: calc(var(--cfy, 40vh) + var(--ch) / 2 + 35px);
+    }
+    
+    .cf-info-title {
+        font-size: 20px;
+    }
+    
+    .cf-info-count {
+        font-size: 11.5px;
+    }
+    
+    .cf-progress-bar {
+        width: 150px;
+        margin-top: 8px;
+    }
+    
+    .chatbot-widget {
+        inset: 12px;
+        width: auto;
+        height: auto;
+    }
+    
+    .whatsapp-fab {
+        right: 18px;
+        bottom: 74px;
+    }
+    
+    .chatbot-fab {
+        right: 18px;
+        bottom: 20px;
+    }
+}
