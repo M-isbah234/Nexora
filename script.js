@@ -51,3 +51,4 @@
 // Refinement: Convert Services section into slide-up tab sheet (#sheet-services)
 // Refinement: Convert About section into slide-up tab sheet (#sheet-about)
 // Refinement: Convert Pricing section into slide-up tab sheet (#sheet-pricing)
+// Refinement: Convert Contact section into slide-up tab sheet (#sheet-contact)
