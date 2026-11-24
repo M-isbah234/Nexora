@@ -50,3 +50,4 @@
 // Refinement: Add smooth slide-up entrance animation for tab-sheet panels
 // Refinement: Convert Services section into slide-up tab sheet (#sheet-services)
 // Refinement: Convert About section into slide-up tab sheet (#sheet-about)
+// Refinement: Convert Pricing section into slide-up tab sheet (#sheet-pricing)
