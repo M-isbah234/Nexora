@@ -117,3 +117,4 @@
 /* Refinement: Completely audit and eliminate all emojis across UI text, headings, and data */
 /* Refinement: Add floating WhatsApp action button with direct chat link */
 /* Refinement: Implement Nexora AI chatbot assistant floating widget and reply generator */
+/* Refinement: Stack WhatsApp and chatbot FABs vertically at right: 24px to prevent dock overlap */
