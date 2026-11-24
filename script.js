@@ -57,3 +57,4 @@
 // Refinement: Ensure ESC key closes any active tab sheet and restores Work view
 // Refinement: Remove left and right arrow buttons from Cover Flow work section
 // Refinement: Scale Cover Flow cards to --cw: 280px and --ch: 375px for generous breathing room
+// Refinement: Enforce exact color palette tokens (#0E0B1D, #2A1E4D, #5A3B8C, #8B7CC7, #C9C2E3, #3A3A52)
