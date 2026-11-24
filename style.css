@@ -119,3 +119,4 @@
 /* Refinement: Implement Nexora AI chatbot assistant floating widget and reply generator */
 /* Refinement: Stack WhatsApp and chatbot FABs vertically at right: 24px to prevent dock overlap */
 /* Refinement: Fix SVG XML entity escaping for & characters in project preview mockups */
+/* Refinement: Add automated &amp; entity sanitization in makeSvgUri helper function */
