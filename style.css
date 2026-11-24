@@ -107,3 +107,4 @@
 /* Refinement: Convert Contact section into slide-up tab sheet (#sheet-contact) */
 /* Refinement: Implement initTabSheets router and active navigation state manager */
 /* Refinement: Add close buttons and backdrop click handlers to dismiss tab sheets */
+/* Refinement: Ensure ESC key closes any active tab sheet and restores Work view */
