@@ -97,3 +97,4 @@
 #bgfx canvas { position: absolute; inset: 0; }
 /* Add subtle visual feedback on card transitions */
 #bgfx canvas { position: absolute; inset: 0; }
+/* Refinement: Refactor navigation architecture to use dedicated tab sheet overlays */
