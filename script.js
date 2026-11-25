@@ -640,10 +640,16 @@ function setActiveNavTab(tabName) {
 
 function openTabSheet(sheetId) {
     document.querySelectorAll('.sheet').forEach(s => {
-        if (s.id !== sheetId) s.classList.remove('open');
+        if (s.id !== sheetId) {
+            s.classList.remove('open');
+            s.style.display = 'none';
+            s.style.visibility = 'hidden';
+        }
     });
     const targetSheet = document.getElementById(sheetId);
     if (targetSheet) {
+        targetSheet.style.display = 'block';
+        targetSheet.style.visibility = '';
         targetSheet.classList.add('open');
         targetSheet.scrollTop = 0;
         document.body.classList.add('sheet-open');
@@ -653,6 +659,8 @@ function openTabSheet(sheetId) {
 function closeAllTabSheets(resetNav = true) {
     document.querySelectorAll('.sheet').forEach(sheet => {
         sheet.classList.remove('open');
+        sheet.style.display = 'none';
+        sheet.style.visibility = '';
     });
     document.body.classList.remove('sheet-open');
     if (resetNav) {
