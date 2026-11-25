@@ -53,11 +53,12 @@
             <span class="nav-brand-badge">Solvex</span>
         </a>
 
-        <!-- Clean Navigation Tabs (No long scrolling; switches active view) -->
+        <!-- Clean Navigation Tabs (AvaJean Architecture: No long scrolling; switches active view) -->
         <nav class="nav-links" aria-label="Main Navigation">
             <button type="button" class="nav-tab-btn active" data-tab="work">Work</button>
-            <button type="button" class="nav-tab-btn" data-tab="services">Services</button>
             <button type="button" class="nav-tab-btn" data-tab="about">About</button>
+            <button type="button" class="nav-tab-btn" data-tab="services">Services</button>
+            <button type="button" class="nav-tab-btn" data-tab="process">Process</button>
             <button type="button" class="nav-tab-btn" data-tab="pricing">Pricing</button>
             <button type="button" class="nav-tab-btn" data-tab="contact">Contact</button>
         </nav>
@@ -141,218 +142,372 @@
          TAB SHEETS OVERLAYS (DEDICATED MODALS - ZERO BODY SCROLLING)
          ================================================================ -->
 
-    <!-- Tab Sheet: Services -->
-    <div id="sheet-services" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Services">
-        <div class="sheet-panel">
-            <div class="sheet-header">
-                <div class="sheet-title-group">
-                    <h3>Core Engineering Services</h3>
-                    <p>End-to-end web architecture, conversational AI, Canva branding, and CRM dashboards</p>
-                </div>
-                <button type="button" class="sheet-close-btn" aria-label="Close Services">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </div>
-            <div class="sheet-body" id="servicesSheetBody">
-                <!-- Injected dynamically via script.js -->
-            </div>
-        </div>
-    </div>
+    <!-- ================================================================
+     AVAJEAN FULL-PAGE OVERLAY SHEETS (ZERO LONG SCROLLING)
+     ================================================================ -->
 
-    <!-- Tab Sheet: About -->
-    <div id="sheet-about" class="tab-sheet" role="dialog" aria-modal="true" aria-label="About Nexora">
-        <div class="sheet-panel">
-            <div class="sheet-header">
-                <div class="sheet-title-group">
-                    <h3>About Nexora Solvex</h3>
-                    <p>Karachi Born. Globally Driven. Engineering Proactive Digital Systems</p>
-                </div>
-                <button type="button" class="sheet-close-btn" aria-label="Close About">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
+<!-- Sheet: About -->
+<section class="sheet" id="sheet-about" aria-label="About Nexora Solvex">
+    <div class="sheet-inner">
+        <a class="back mono" href="#work">Back</a>
+        <div class="eyebrow mono">About · Karachi, Pakistan</div>
+        <h1 class="big">Hi, we're Nexora Solvex, an <span style="white-space:nowrap"><em class="hl-ink">AI &amp; Digital Systems Studio</em></span></h1>
+        <p class="lead">Turning ambitious ideas into scalable websites, autonomous agents, and high-conversion platforms.</p>
+        
+        <div class="about-grid">
+            <div class="prose">
+                <p>Got a business that needs a serious digital presence? A customer service queue that should be running on autopilot? A custom web platform or AI agent that solves real operational bottlenecks? Let's make it happen.</p>
+                <p>We're Nexora Solvex, an AI and digital solutions engineering studio based in Karachi, Pakistan. We partner with ambitious brands to build lightning-fast web applications, intelligent conversational chatbots, autonomous agent pipelines, Canva branding &amp; marketing posters, dedicated customer &amp; admin support desks, and custom CRM analytics dashboards.</p>
+                <p>From the first architectural blueprint to final production deployment and SLA monitoring, we bring precision engineering, proactive AI automation, and clean design into every single release. And yes, we love complex engineering challenges.</p>
+                <p>Real digital systems deserve far more than generic templates. We take the time to understand your user journeys, engineering constraints, and conversion goals, ensuring every interface is responsive, rock-solid, and engineered to scale under real-world load.</p>
             </div>
-            <div class="sheet-body" id="aboutSheetBody">
-                <div class="about-sheet-wrap">
-                    <div>
-                        <span class="section-tag">Karachi AI Startup</span>
-                        <h4 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--text-pure); margin-bottom: 14px;">Building Real Digital Infrastructure</h4>
-                        <p style="font-size: 14px; color: var(--color-lavender); line-height: 1.7; margin-bottom: 14px;">
-                            Founded in Karachi, Pakistan, Nexora Solvex helps ambitious businesses transition from fragile template websites into high-conversion automated digital systems.
-                        </p>
-                        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
-                            We integrate domain-trained AI chatbots, autonomous lead capture agents, high-impact Canva visual branding, and custom administrative CRM panels that generate measurable return on investment.
-                        </p>
-                        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                            <div style="background: rgba(14, 11, 29, 0.9); border: 1px solid var(--border-subtle); padding: 14px 18px; border-radius: 14px;">
-                                <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--color-lavender);">6+</div>
-                                <div style="font-size: 11px; font-weight: 700; color: var(--color-secondary); text-transform: uppercase;">Flagship Projects</div>
-                            </div>
-                            <div style="background: rgba(14, 11, 29, 0.9); border: 1px solid var(--border-subtle); padding: 14px 18px; border-radius: 14px;">
-                                <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--color-lavender);">99.9%</div>
-                                <div style="font-size: 11px; font-weight: 700; color: var(--color-secondary); text-transform: uppercase;">Uptime SLA</div>
-                            </div>
-                            <div style="background: rgba(14, 11, 29, 0.9); border: 1px solid var(--border-subtle); padding: 14px 18px; border-radius: 14px;">
-                                <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--color-lavender);">Karachi</div>
-                                <div style="font-size: 11px; font-weight: 700; color: var(--color-secondary); text-transform: uppercase;">Headquarters</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="background: rgba(14, 11, 29, 0.85); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 24px;">
-                        <h4 style="font-family: var(--font-heading); font-size: 17px; font-weight: 700; color: var(--text-pure); margin-bottom: 16px;">Our 4-Step Delivery Process</h4>
-                        <div style="display: flex; flex-direction: column; gap: 14px;">
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">1</div>
-                                <div>
-                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Discovery & Workflow Audit</div>
-                                    <div style="font-size: 12.5px; color: var(--text-muted);">We analyze your business workflows, audience demographics, and competition.</div>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">2</div>
-                                <div>
-                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Architecture & UI/UX Prototyping</div>
-                                    <div style="font-size: 12.5px; color: var(--text-muted);">Crafting interactive mockups, design tokens, and modular database schemas.</div>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">3</div>
-                                <div>
-                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">AI Integration & Full-Stack Development</div>
-                                    <div style="font-size: 12.5px; color: var(--text-muted);">Connecting LLMs, autonomous agents, backend controllers, and high-speed Vercel hosting.</div>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                <div style="width: 28px; height: 28px; border-radius: 6px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;">4</div>
-                                <div>
-                                    <div style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Deployment & Continuous Optimization</div>
-                                    <div style="font-size: 12.5px; color: var(--text-muted);">Search engine indexing, analytics setup, and ongoing proactive maintenance.</div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="pwrap">
+                <div class="portrait" id="portrait" aria-label="Nexora Solvex">
+                    <img src="./favicon.png" alt="Nexora Solvex Official Brand Logo" class="portrait-img">
+                    <div class="portrait-caption">
+                        <b>Nexora Solvex</b>
+                        <span class="mono">Karachi · Global Remote Delivery</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Tab Sheet: Pricing -->
-    <div id="sheet-pricing" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Pricing">
-        <div class="sheet-panel">
-            <div class="sheet-header">
-                <div class="sheet-title-group">
-                    <h3>Predictable Investment Plans</h3>
-                    <p>Transparent project pricing with zero hidden fees</p>
-                </div>
-                <button type="button" class="sheet-close-btn" aria-label="Close Pricing">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </div>
-            <div class="sheet-body" id="pricingSheetBody">
-                <!-- Injected dynamically via script.js -->
-            </div>
+        <div class="stats">
+            <div><b>6+</b><span class="mono">Flagship production systems</span></div>
+            <div><b>99.9%</b><span class="mono">Uptime SLA &amp; reliability</span></div>
+            <div><b>100%</b><span class="mono">Custom engineering architecture</span></div>
+            <div><b>24/7</b><span class="mono">Autonomous AI operations</span></div>
         </div>
-    </div>
 
-    <!-- Tab Sheet: Contact -->
-    <div id="sheet-contact" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Contact">
-        <div class="sheet-panel">
-            <div class="sheet-header">
-                <div class="sheet-title-group">
-                    <h3>Contact Nexora Solvex</h3>
-                    <p>Direct communication with our Karachi engineering and design team</p>
-                </div>
-                <button type="button" class="sheet-close-btn" aria-label="Close Contact">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </div>
-            <div class="sheet-body">
-                <div class="contact-sheet-wrap">
-                    <div>
-                        <span class="section-tag">Direct Communication</span>
-                        <h4 style="font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--text-pure); margin-bottom: 12px;">Let's Build Something Remarkable</h4>
-                        <p style="font-size: 13.5px; color: var(--color-lavender); line-height: 1.6; margin-bottom: 24px;">
-                            Have an idea for a web platform, chatbot, autonomous agent, or complete automation workflow? Drop us a message or chat with us directly on WhatsApp.
-                        </p>
-                        <div class="contact-channels">
-                            <div class="contact-channel-item">
-                                <div class="contact-channel-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6.08 6.08l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
-                                </div>
-                                <div class="contact-channel-text">
-                                    <span>Phone & WhatsApp</span>
-                                    <p>+92 315 1196495</p>
-                                </div>
-                            </div>
-                            <div class="contact-channel-item">
-                                <div class="contact-channel-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                                </div>
-                                <div class="contact-channel-text">
-                                    <span>Direct Email</span>
-                                    <p>nexoradevx@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-channel-item">
-                                <div class="contact-channel-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                                </div>
-                                <div class="contact-channel-text">
-                                    <span>Location</span>
-                                    <p>Karachi, Pakistan</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-form-panel">
-                        <form action="https://formspree.io/f/mnjlloaj" method="POST" id="contactForm">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="formName">Full Name</label>
-                                    <input type="text" id="formName" name="name" class="form-input" placeholder="Your Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="formEmail">Email Address</label>
-                                    <input type="email" id="formEmail" name="email" class="form-input" placeholder="name@company.com" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="formService">Requested Service</label>
-                                <input type="text" id="formService" name="service" class="form-input" placeholder="e.g. Website + AI Chatbot, CRM Dashboard, Canva Posters">
-                            </div>
-                            <div class="form-group">
-                                <label for="formMessage">Project Details</label>
-                                <textarea id="formMessage" name="message" class="form-input" rows="4" placeholder="Tell us about your project vision, target timeline, and goals..." required style="resize: vertical;"></textarea>
-                            </div>
-                            <button type="submit" class="form-submit-btn">
-                                <span>Send Message</span>
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                            </button>
-                        </form>
-                    </div>
+        <h2 class="sec">Tools &amp; Stack We Build With</h2>
+        <div class="tslide" aria-label="Tools">
+            <div class="ts-row">
+                <div class="ts-track">
+                    <div class="tl"><span class="tl-n">React</span></div>
+                    <div class="tl"><span class="tl-n">Node.js</span></div>
+                    <div class="tl"><span class="tl-n">Python</span></div>
+                    <div class="tl"><span class="tl-n">Supabase</span></div>
+                    <div class="tl"><span class="tl-n">Groq AI</span></div>
+                    <div class="tl"><span class="tl-n">PostgreSQL</span></div>
+                    <div class="tl"><span class="tl-n">Tailwind CSS</span></div>
+                    <div class="tl"><span class="tl-n">Canva</span></div>
+                    <div class="tl"><span class="tl-n">Figma</span></div>
+                    <div class="tl"><span class="tl-n">Vercel</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">React</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Node.js</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Python</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Supabase</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Groq AI</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">PostgreSQL</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Tailwind CSS</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Canva</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Figma</span></div>
+                    <div class="tl" aria-hidden="true"><span class="tl-n">Vercel</span></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Tab Sheet: Project Detail View -->
-    <div id="sheet-project" class="tab-sheet" role="dialog" aria-modal="true" aria-label="Project Details">
-        <div class="sheet-panel">
-            <div class="sheet-header">
-                <div class="sheet-title-group">
-                    <h3>Project Showcase</h3>
-                    <p>Live delivery architecture, technology stack, and demonstration</p>
-                </div>
-                <button type="button" class="sheet-close-btn" aria-label="Close Project Details">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
+        <h2 class="sec">What clients say</h2>
+        <div class="rv-sum">
+            <b>5.0</b>
+            <span class="rv-sum-stars">★★★★★</span>
+            <span class="mono soft">Verified feedback from live production clients</span>
+        </div>
+        <div class="rv-feat">
+            <figure class="rv">
+                <div class="rv-top"><span class="rv-st">★★★★★</span><span class="rv-sc">5.0</span></div>
+                <blockquote>Working with Nexora Solvex was one of the best decisions for Hot N Tasty Roll. They built our full online ordering website and embedded an AI chatbot that answers customers around the clock. Online orders and search visibility increased immediately.</blockquote>
+                <figcaption><span class="rv-av">HN</span><span><b>Hot N Tasty Roll</b><em>Restaurant Platform &amp; AI Chatbot</em></span></figcaption>
+            </figure>
+            <figure class="rv">
+                <div class="rv-top"><span class="rv-st">★★★★★</span><span class="rv-sc">5.0</span></div>
+                <blockquote>Nexora engineered our flagship luxury e-commerce store and admin CRM from scratch. The checkout speed, JWT customer accounts, and real-time sales analytics dashboard are top-tier. Communication was prompt, and revisions were delivered rapidly.</blockquote>
+                <figcaption><span class="rv-av">SE</span><span><b>Saud Emporium</b><em>Luxury Ladies' Fashion Couture &amp; CRM</em></span></figcaption>
+            </figure>
+            <figure class="rv">
+                <div class="rv-top"><span class="rv-st">★★★★★</span><span class="rv-sc">5.0</span></div>
+                <blockquote>The QuickStay hotel booking platform and MedixWeb AI hospital assistant exceeded all our expectations. The real-time room availability engine and symptom-based doctor booking run flawlessly. Exceptional engineering talent.</blockquote>
+                <figcaption><span class="rv-av">MW</span><span><b>MedixWeb &amp; QuickStay</b><em>HealthTech AI &amp; MERN Booking</em></span></figcaption>
+            </figure>
+        </div>
+
+        <div class="meta-line mono">
+            <span>Karachi Born · Globally Driven</span>
+            <span>Uptime SLA: 99.9% · 24/7 Support</span>
+            <span>Contact: nexoradevx@gmail.com</span>
+        </div>
+        <p class="copy mono">© 2026 Nexora Solvex. Engineered in Karachi, Pakistan.</p>
+    </div>
+</section>
+
+<!-- Sheet: Services -->
+<section class="sheet" id="sheet-services" aria-label="Services">
+    <div class="sheet-inner">
+        <a class="back mono" href="#work">Back</a>
+        <div class="eyebrow mono">Practice · Karachi, Pakistan</div>
+        <div class="bignum"><strong>6</strong><span>disciplines</span></div>
+        <p class="lead">One engineering studio for everything your users interact with. Your vision, our full-stack execution.</p>
+        
+        <h2 class="sec">Our Core Disciplines</h2>
+        <div class="principles world">
+            <div>
+                <span class="mono soft">01</span>
+                <b>Websites &amp; Web Applications</b>
+                <p>Modern, responsive web applications, landing pages, and e-commerce stores engineered with clean React/Node architecture, high-speed Vercel hosting, and conversion-driven UI/UX.</p>
             </div>
-            <div class="sheet-body" id="projectSheetBody">
-                <!-- Dynamically injected via script.js -->
+            <div>
+                <span class="mono soft">02</span>
+                <b>Conversational AI Chatbots</b>
+                <p>Domain-grounded AI assistants that engage visitors 24/7, answer customer inquiries instantly, qualify prospects, and route requests directly into your CRM or WhatsApp.</p>
+            </div>
+            <div>
+                <span class="mono soft">03</span>
+                <b>Autonomous AI Agents</b>
+                <p>Intelligent multi-agent pipelines that execute multi-step business workflows, monitor data feeds, automate patient/guest scheduling, and handle complex backend triage.</p>
+            </div>
+            <div>
+                <span class="mono soft">04</span>
+                <b>Canva Designing &amp; Posters</b>
+                <p>High-impact visual communication: brand guidelines, corporate logos, social media marketing campaigns, commercial flyers, restaurant menus, and event posters.</p>
+            </div>
+            <div>
+                <span class="mono soft">05</span>
+                <b>Customer &amp; Admin Support</b>
+                <p>Omnichannel support desks, ticket routing, dispute resolution, refund tracking, and administrative back-office workflow automation for frictionless operations.</p>
+            </div>
+            <div>
+                <span class="mono soft">06</span>
+                <b>CRM &amp; Analytics Dashboards</b>
+                <p>Custom administrative dashboards, real-time KPI visualization, revenue breakdown charts, role-based access control, and actionable business intelligence hubs.</p>
             </div>
         </div>
-    </div>
 
-    <!-- Quick Search Modal (⌘K Fuzzy Search) -->
+        <h2 class="sec">Engineering Toolkit</h2>
+        <div class="tools cv">
+            <div><b>React &amp; Next.js</b><span class="mono">Web applications · Interactive UI · Component systems</span></div>
+            <div><b>Node.js &amp; Express</b><span class="mono">REST APIs · Authentication · Webhook pipelines</span></div>
+            <div><b>Python &amp; AI SDKs</b><span class="mono">LLM orchestration · Autonomous agents · RAG embeddings</span></div>
+            <div><b>Supabase &amp; PostgreSQL</b><span class="mono">Relational databases · Real-time sync · Row security</span></div>
+            <div><b>Canva &amp; Figma</b><span class="mono">Design systems · Brand identity · Marketing posters</span></div>
+            <div><b>Vercel &amp; Cloudflare</b><span class="mono">Edge deployments · CDN optimization · 99.9% uptime SLA</span></div>
+        </div>
+
+        <div class="meta-line mono">
+            <span>Custom Engineering Architecture</span>
+            <span>Fixed-price or sprint-based contracts</span>
+            <span>Direct engineer communication</span>
+        </div>
+        <p class="copy mono">© 2026 Nexora Solvex. Engineered in Karachi, Pakistan.</p>
+    </div>
+</section>
+
+<!-- Sheet: Process -->
+<section class="sheet" id="sheet-process" aria-label="Process">
+    <div class="sheet-inner">
+        <a class="back mono" href="#work">Back</a>
+        <div class="eyebrow mono">Process · How We Work</div>
+        <h1 class="big">How a project <span style="white-space:nowrap"><em class="hl-ink">goes.</em></span></h1>
+        
+        <ol class="steps">
+            <li>
+                <span class="mono soft">01</span>
+                <b>Discovery &amp; Blueprint</b>
+                <p>We analyze your business workflows, target users, and technical constraints to formulate an exact architectural roadmap and milestone timeline.</p>
+            </li>
+            <li>
+                <span class="mono soft">02</span>
+                <b>Iterative Prototyping</b>
+                <p>Figma wireframes and interactive UI mockups so you test and experience the complete user flow before committing to backend engineering.</p>
+            </li>
+            <li>
+                <span class="mono soft">03</span>
+                <b>Full-Stack Engineering</b>
+                <p>Clean production code, database modeling, AI model grounding, and weekly staging deployments with complete transparency.</p>
+            </li>
+            <li>
+                <span class="mono soft">04</span>
+                <b>Production Launch &amp; SLA</b>
+                <p>Zero-downtime deployment, custom domain setup, search engine indexing, and 24/7 uptime monitoring with rapid-response support.</p>
+            </li>
+        </ol>
+
+        <h2 class="sec">What working with us looks like</h2>
+        <div class="wl">
+            <div>
+                <span class="mono soft">Before any code</span>
+                <b>We map your business logic</b>
+                <p>We start with who your users are and what they need to achieve. That decides whether an application actually converts, not just whether it looks nice.</p>
+            </div>
+            <div>
+                <span class="mono soft">First sprint</span>
+                <b>You see clickable prototypes</b>
+                <p>Working interactive mockups within the first few days so you feel the experience in your hands and test key interactions before building the backend.</p>
+            </div>
+            <div>
+                <span class="mono soft">During development</span>
+                <b>Direct, fast communication</b>
+                <p>Weekly staging demos, clear changelogs, and direct WhatsApp / Slack access to the engineers actually writing your code.</p>
+            </div>
+            <div>
+                <span class="mono soft">Post launch</span>
+                <b>Long-term reliability</b>
+                <p>Clean documented codebase, transparent handoff, 99.9% uptime guarantees, and ongoing maintenance support sprints.</p>
+            </div>
+        </div>
+
+        <div class="meta-line mono">
+            <span>Fast Turnaround · Milestone Deliveries</span>
+            <span>No Template Locks · You Own 100% of the Code</span>
+        </div>
+        <p class="copy mono">© 2026 Nexora Solvex. Engineered in Karachi, Pakistan.</p>
+    </div>
+</section>
+
+<!-- Sheet: Pricing -->
+<section class="sheet" id="sheet-pricing" aria-label="Pricing">
+    <div class="sheet-inner">
+        <a class="back mono" href="#work">Back</a>
+        <div class="eyebrow mono">Investment · Transparent Pricing</div>
+        <h1 class="big">Predictable <span style="white-space:nowrap"><em class="hl-ink">investment plans.</em></span></h1>
+        <p class="lead">Transparent milestone pricing with zero hidden fees. Fixed quotes for projects of every scale.</p>
+        
+        <div class="pricing-cards-grid">
+            <div class="pricing-card">
+                <span class="mono soft">Starter</span>
+                <b>Basic Plan</b>
+                <div class="pricing-price">PKR 11,000 – 15,000</div>
+                <p class="pricing-for">Best for small businesses, restaurants &amp; portfolio landing pages</p>
+                <ul class="pricing-list mono">
+                    <li>Stunning responsive UI/UX for all screen sizes</li>
+                    <li>Clean modern frontend (React/HTML5/CSS3)</li>
+                    <li>Basic contact &amp; inquiry forms</li>
+                    <li>High-speed Vercel hosting setup</li>
+                    <li>Basic SEO foundation &amp; Google indexing</li>
+                </ul>
+                <a class="pill" href="https://wa.me/923182370631?text=Hi%20Nexora,%20I%20am%20interested%20in%20the%20Basic%20Plan" target="_blank" rel="noopener">Start Basic Project</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-popular-badge">Most Popular</div>
+                <span class="mono soft">Growth</span>
+                <b>Standard Plan</b>
+                <div class="pricing-price">PKR 18,000 – 25,000</div>
+                <p class="pricing-for">Best for e-commerce stores, hotels &amp; interactive platforms</p>
+                <ul class="pricing-list mono">
+                    <li>Multi-page web platform with full-stack architecture</li>
+                    <li>Embedded 24/7 AI chatbot for customer inquiries</li>
+                    <li>E-commerce catalog, shopping cart &amp; local checkout</li>
+                    <li>Authentication (Clerk / JWT / Supabase Auth)</li>
+                    <li>Custom Canva social media banners &amp; marketing pack</li>
+                    <li>Priority WhatsApp developer support</li>
+                </ul>
+                <a class="pill big" href="https://wa.me/923182370631?text=Hi%20Nexora,%20I%20am%20interested%20in%20the%20Standard%20Plan" target="_blank" rel="noopener">Start Standard Project</a>
+            </div>
+            <div class="pricing-card">
+                <span class="mono soft">Enterprise</span>
+                <b>Premium Plan</b>
+                <div class="pricing-price">PKR 30,000+</div>
+                <p class="pricing-for">Best for enterprise applications, multi-agent AI &amp; custom CRMs</p>
+                <ul class="pricing-list mono">
+                    <li>Custom administrative CRM &amp; analytics dashboard</li>
+                    <li>Autonomous multi-agent workflows &amp; pipeline integration</li>
+                    <li>WhatsApp bot automation (Whapi / Meta Cloud API)</li>
+                    <li>Real-time telemetry, Chart.js metrics &amp; revenue reports</li>
+                    <li>99.9% uptime SLA guarantee &amp; ongoing support sprints</li>
+                    <li>Dedicated lead engineer on call</li>
+                </ul>
+                <a class="pill" href="https://wa.me/923182370631?text=Hi%20Nexora,%20I%20am%20interested%20in%20the%20Premium%20Plan" target="_blank" rel="noopener">Start Premium Project</a>
+            </div>
+        </div>
+
+        <div class="meta-line mono">
+            <span>Milestone Payments: 50% upfront / 50% upon delivery</span>
+            <span>EasyPaisa, JazzCash, Nayapay, Bank Transfer &amp; International Wire</span>
+        </div>
+        <p class="copy mono">© 2026 Nexora Solvex. Engineered in Karachi, Pakistan.</p>
+    </div>
+</section>
+
+<!-- Sheet: Contact -->
+<section class="sheet" id="sheet-contact" aria-label="Contact">
+    <div class="sheet-inner">
+        <a class="back mono" href="#work">Back</a>
+        <div class="eyebrow mono">Contact · Start a Project</div>
+        <h1 class="big">Let's build something <span style="white-space:nowrap"><em class="hl-ink">remarkable.</em></span></h1>
+        
+        <div class="upcard">
+            <div class="upcopy">
+                <span class="mono soft">Direct WhatsApp Consultation</span>
+                <b>Nexora Solvex Engineering Desk</b>
+                <span class="uprole">AI &amp; Digital Systems Studio · Karachi, Pakistan</span>
+                <ul class="mono">
+                    <li>Average response time: within 15 minutes</li>
+                    <li>Karachi, Pakistan · Global remote delivery</li>
+                    <li>Fixed-price milestone contracts or dedicated sprints</li>
+                    <li>Direct chat with the engineers building your software</li>
+                </ul>
+            </div>
+            <div class="upcta">
+                <a class="pill big" href="https://wa.me/923182370631" target="_blank" rel="noopener">Chat on WhatsApp</a>
+                <a class="pill ghost" href="mailto:nexoradevx@gmail.com">Send Email</a>
+            </div>
+        </div>
+
+        <div class="mailcard">
+            <div class="mc-copy">
+                <span class="mono soft">Prefer direct email?</span>
+                <a class="mc-addr" href="mailto:nexoradevx@gmail.com">nexoradevx<span>@</span>gmail.com</a>
+                <span class="mono soft">Project briefs, RFPs, quotes, and technical specs. Replies within 2 hours.</span>
+            </div>
+            <div class="mc-cta">
+                <a class="pill" href="mailto:nexoradevx@gmail.com">Email Nexora</a>
+                <button class="pill ghost" type="button" id="copyMailBtn">Copy Email</button>
+            </div>
+        </div>
+
+        <h2 class="sec">Project Brief Builder</h2>
+        <form class="brief" id="briefForm" autocomplete="off" onsubmit="return false">
+            <span class="mono soft">Select the services you need, write a brief, then send it via WhatsApp or email</span>
+            <div class="chips" id="briefChips">
+                <button type="button" class="chip-btn active" data-service="Websites">Websites</button>
+                <button type="button" class="chip-btn" data-service="Smart AI Chatbots">Chatbots</button>
+                <button type="button" class="chip-btn" data-service="Autonomous AI Agents">Autonomous Agents</button>
+                <button type="button" class="chip-btn" data-service="Canva Designing &amp; Posters">Canva &amp; Posters</button>
+                <button type="button" class="chip-btn" data-service="Customer &amp; Admin Support">Customer Support</button>
+                <button type="button" class="chip-btn" data-service="CRM &amp; Dashboards">CRM &amp; Dashboards</button>
+            </div>
+            <label>
+                <span class="mono">Project Scope &amp; Target Timeline</span>
+                <textarea id="briefMsg" rows="4" placeholder="Briefly describe what you want to build, key features, and your target deadline..."></textarea>
+            </label>
+            <div class="row">
+                <button class="pill" type="button" id="briefSendWa">Send on WhatsApp</button>
+                <button class="pill ghost" type="button" id="briefSendMail">Send by Email</button>
+                <button class="pill ghost" type="button" id="briefCopy">Copy Brief</button>
+                <span class="mono soft" id="briefStatus" aria-live="polite"></span>
+            </div>
+        </form>
+
+        <div class="meta-line mono">
+            <span>Monday to Saturday · PKT (UTC+5)</span>
+            <span>Instant response on WhatsApp (+92 318 2370631 / +92 315 1196495)</span>
+            <span>Email: nexoradevx@gmail.com</span>
+            <span>Headquarters: Karachi, Pakistan</span>
+        </div>
+        <p class="copy mono">© 2026 Nexora Solvex. Engineered in Karachi, Pakistan.</p>
+    </div>
+</section>
+
+<!-- Sheet: Project Details -->
+<section class="sheet" id="sheet-project" aria-label="Project Details">
+    <div class="sheet-inner">
+        <a class="back mono" href="#work">Back</a>
+        <div id="projectSheetBody">
+            <!-- Dynamically injected via script.js -->
+        </div>
+    </div>
+</section>
+
+<!-- Quick Search Modal (⌘K Fuzzy Search) -->
     <div id="searchModal" role="dialog" aria-modal="true" aria-label="Search Projects">
         <div class="search-box">
             <div class="search-input-row">
