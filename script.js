@@ -747,4 +747,189 @@ function initQuickSearch() {
         }
     });
 
-// Freeze on touch & integer snapping
+    if (input && resultsContainer) {
+        input.addEventListener('input', () => {
+            const query = input.value.trim().toLowerCase();
+            renderSearchResults(query, resultsContainer);
+        });
+    }
+}
+
+function openQuickSearch() {
+    const modal = document.getElementById('searchModal');
+    const input = document.getElementById('searchInput');
+    const resultsContainer = document.getElementById('searchResults');
+    if (!modal) return;
+
+    modal.classList.add('open');
+    if (input) {
+        input.value = '';
+        setTimeout(() => input.focus(), 50);
+    }
+    if (resultsContainer) renderSearchResults('', resultsContainer);
+}
+
+function closeQuickSearch() {
+    const modal = document.getElementById('searchModal');
+    if (modal) modal.classList.remove('open');
+}
+
+function renderSearchResults(query, container) {
+    container.innerHTML = '';
+
+    const filtered = FLAGSHIP_PROJECTS.filter(p => {
+        if (!query) return true;
+        const matchTitle = p.title.toLowerCase().includes(query);
+        const matchDesc = p.desc.toLowerCase().includes(query);
+        const matchCat = p.category.toLowerCase().includes(query);
+        const matchTags = p.tags.some(t => t.toLowerCase().includes(query));
+        return matchTitle || matchDesc || matchCat || matchTags;
+    });
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--text-dim); font-size: 13.5px;">No projects found matching "${query}"</div>`;
+        return;
+    }
+
+    filtered.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'search-item';
+        item.addEventListener('click', () => {
+            closeQuickSearch();
+            openProjectDetails(p);
+        });
+
+        const img = document.createElement('img');
+        img.src = p.previewImg;
+        img.alt = p.title;
+        img.className = 'search-item-img';
+
+        const info = document.createElement('div');
+        info.className = 'search-item-info';
+
+        const title = document.createElement('div');
+        title.className = 'search-item-title';
+        title.textContent = p.title;
+
+        const desc = document.createElement('div');
+        desc.className = 'search-item-desc';
+        desc.textContent = p.subtitle;
+
+        info.appendChild(title);
+        info.appendChild(desc);
+
+        const badge = document.createElement('span');
+        badge.className = 'search-item-badge';
+        badge.textContent = p.badge;
+
+        item.appendChild(img);
+        item.appendChild(info);
+        item.appendChild(badge);
+        container.appendChild(item);
+    });
+}
+
+// ==========================================================================
+//  CONTACT FORM HANDLING (ZERO EMOJIS)
+// ==========================================================================
+
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    form.addEventListener('submit', () => {});
+}
+
+// ==========================================================================
+//  NEXORA AI CHATBOT WIDGET (ZERO EMOJIS)
+// ==========================================================================
+
+function initChatbotWidget() {
+    const toggleBtn = document.getElementById('chatbotToggle');
+    const closeBtn = document.getElementById('chatbotClose');
+    const widget = document.getElementById('chatbotWidget');
+    const sendBtn = document.getElementById('chatSend');
+    const input = document.getElementById('chatInput');
+
+    if (!toggleBtn || !widget) return;
+
+    toggleBtn.addEventListener('click', () => widget.classList.toggle('open'));
+    if (closeBtn) closeBtn.addEventListener('click', () => widget.classList.remove('open'));
+
+    const handleSend = () => {
+        const text = input.value.trim();
+        if (!text) return;
+        addChatMessage(text, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            const reply = generateBotReply(text);
+            addChatMessage(reply, 'bot');
+        }, 400);
+    };
+
+    if (sendBtn) sendBtn.addEventListener('click', handleSend);
+    if (input) input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleSend();
+    });
+
+    window.sendQuickMsg = (msg) => {
+        addChatMessage(msg, 'user');
+        setTimeout(() => {
+            const reply = generateBotReply(msg);
+            addChatMessage(reply, 'bot');
+        }, 350);
+    };
+}
+
+function addChatMessage(text, sender = 'bot') {
+    const messages = document.getElementById('chatMessages');
+    if (!messages) return;
+
+    const msg = document.createElement('div');
+    msg.className = `chat-msg ${sender}`;
+    msg.innerHTML = `<div class="chat-bubble">${text}</div>`;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function generateBotReply(userQuery) {
+    const q = userQuery.toLowerCase();
+    if (q.includes('service') || q.includes('offer')) {
+        return "Nexora provides 6 specialized services: 1) Modern Websites, 2) Domain-Trained AI Chatbots, 3) Autonomous Agents, 4) Canva Designing & Posters, 5) 24/7 Customer Support Desks, and 6) Custom CRM Dashboards. Open the Services tab above to explore full deliverables!";
+    }
+    if (q.includes('price') || q.includes('cost') || q.includes('pricing') || q.includes('rate')) {
+        return "Our pricing starts from PKR 11,000 for Basic landing sites, PKR 17,000 for Pro sites with AI Chatbot integration, and PKR 26,000+ for complete custom Enterprise CRM and Agent systems. Check our Pricing tab for complete details.";
+    }
+    if (q.includes('contact') || q.includes('whatsapp') || q.includes('phone') || q.includes('call')) {
+        return "You can reach us directly on WhatsApp at +92 315 1196495 or via email at nexoradevx@gmail.com. We are based in Karachi, Pakistan.";
+    }
+    if (q.includes('project') || q.includes('portfolio') || q.includes('work')) {
+        return "Our 6 featured projects in the Cover Flow carousel are Hot N Tasty Roll, Aetheric Store, QuickStay Hotel Booking, Saud Emporium, MedixWeb AI Hospital, and Edusity. Click any project card to view its live deployment!";
+    }
+    return "Thank you for reaching out! Would you like to discuss a custom web application, AI chatbot, or administrative dashboard for your business? Click our WhatsApp button to chat with our team directly.";
+}
+
+// ==========================================================================
+//  MOBILE MENU
+// ==========================================================================
+
+function initMobileMenu() {
+    const toggle = document.getElementById('navMobileToggle');
+    const links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+
+    toggle.addEventListener('click', () => {
+        const isHidden = links.style.display === 'flex';
+        links.style.display = isHidden ? 'none' : 'flex';
+        if (!isHidden) {
+            links.style.position = 'fixed';
+            links.style.top = '72px';
+            links.style.left = '0';
+            links.style.right = '0';
+            links.style.flexDirection = 'column';
+            links.style.background = 'rgba(0, 0, 0, 0.96)';
+            links.style.padding = '24px';
+            links.style.borderBottom = '1px solid var(--border-subtle)';
+        }
+    });
+}
