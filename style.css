@@ -101,6 +101,40 @@ html, body {
     background: radial-gradient(circle, var(--color-surface), transparent 75%);
 }
 
+/* Ambient Glowing Radial Orbs from Nexora Website */
+.ambient-glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(65px);
+    opacity: 0.6;
+    animation: pulseAmbientOrb 11s ease-in-out infinite alternate;
+}
+
+.ambient-orb-top-left {
+    top: -180px;
+    left: -180px;
+    width: 620px;
+    height: 620px;
+    background: radial-gradient(circle, rgba(90, 59, 140, 0.42) 0%, rgba(42, 30, 77, 0.18) 50%, transparent 72%);
+}
+
+.ambient-orb-bottom-right {
+    bottom: -150px;
+    right: -150px;
+    width: 580px;
+    height: 580px;
+    background: radial-gradient(circle, rgba(139, 124, 199, 0.32) 0%, rgba(90, 59, 140, 0.15) 50%, transparent 72%);
+    animation-delay: -5.5s;
+}
+
+@keyframes pulseAmbientOrb {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.45; }
+    50% { transform: scale(1.12) translate(30px, 20px); opacity: 0.8; }
+    100% { transform: scale(0.96) translate(-20px, 32px); opacity: 0.5; }
+}
+
 /* ==========================================================================
    TOP NAVIGATION BAR
    ========================================================================== */
@@ -353,23 +387,31 @@ html, body {
     border-radius: 18px;
     background: var(--color-surface);
     border: 1.5px solid var(--border-subtle);
-    will-change: transform;
+    will-change: transform, box-shadow, border-color, filter;
     overflow: hidden;
     box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(90, 59, 140, 0.18);
     /* Subtle Floor Reflection */
-    -webkit-box-reflect: below 6px linear-gradient(transparent 85%, rgba(0, 0, 0, 0.3));
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-box-reflect: below 6px linear-gradient(transparent 85%, rgba(0, 0, 0, 0.35));
+    transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.3s ease;
     cursor: pointer;
 }
 
 .cf-card:hover {
     border-color: var(--color-secondary);
-    box-shadow: 0 24px 55px -8px rgba(0, 0, 0, 0.9), 0 0 35px rgba(139, 124, 199, 0.3);
+    box-shadow: 0 26px 60px -8px rgba(0, 0, 0, 0.95), 0 0 35px rgba(139, 124, 199, 0.38);
+}
+
+.cf-card:not(.active):hover {
+    filter: brightness(1.22);
 }
 
 .cf-card.active {
     border-color: var(--color-secondary);
-    box-shadow: 0 28px 65px -8px rgba(0, 0, 0, 0.95), 0 0 45px rgba(90, 59, 140, 0.45);
+    box-shadow: 0 32px 75px -10px rgba(0, 0, 0, 0.95), 
+                0 0 45px rgba(139, 124, 199, 0.5), 
+                0 0 20px rgba(90, 59, 140, 0.65);
 }
 
 /* Dark gradient depth falloff on side cards */
@@ -514,6 +556,59 @@ html, body {
     box-shadow: 0 0 10px var(--color-secondary);
     border-radius: 3px;
     transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   INFINITE GLIDING LOGO MARQUEE (FROM NEXORA WEBSITE)
+   ========================================================================== */
+
+.hero-marquee-strip {
+    position: absolute;
+    bottom: 84px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(720px, 92vw);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+    mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+    opacity: 0.55;
+    transition: opacity 0.3s ease;
+}
+
+.hero-marquee-strip:hover {
+    opacity: 0.9;
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    width: max-content;
+    animation: marqueeScroll 22s linear infinite;
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.marquee-logo-item img {
+    height: 22px;
+    width: auto;
+    max-width: 85px;
+    filter: brightness(0) invert(0.85) drop-shadow(0 0 8px rgba(139, 124, 199, 0.3));
+    opacity: 0.65;
+    transition: all 0.25s ease;
 }
 
 /* ==========================================================================
@@ -1304,6 +1399,22 @@ html, body {
     fill: #FFFFFF;
 }
 
+/* Pulsing Halo Rings from Nexora Website */
+.whatsapp-fab::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: #25D366;
+    animation: waPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+@keyframes waPulse {
+    0% { transform: scale(0.95); opacity: 0.85; }
+    100% { transform: scale(1.7); opacity: 0; }
+}
+
 .chatbot-fab {
     position: fixed;
     bottom: 24px;
@@ -1321,6 +1432,21 @@ html, body {
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(90, 59, 140, 0.5);
     transition: transform 0.2s ease;
+}
+
+.chatbot-fab::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    animation: chatPulse 2.3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+@keyframes chatPulse {
+    0% { transform: scale(0.95); opacity: 0.85; }
+    100% { transform: scale(1.7); opacity: 0; }
 }
 
 .chatbot-fab:hover {
@@ -1581,5 +1707,10 @@ html, body {
     .chatbot-fab {
         right: 18px;
         bottom: 20px;
+    }
+    
+    .hero-marquee-strip {
+        bottom: 60px;
+        opacity: 0.45;
     }
 }
