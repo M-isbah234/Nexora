@@ -11,7 +11,7 @@ import {
     BRAND_INFO 
 } from './assets.js';
 
-// Global Cover Flow State
+// Global Cover Flow State with Fluid Inertia & Parallax
 let cflowState = {
     list: FLAGSHIP_PROJECTS,
     cards: [],
@@ -21,9 +21,17 @@ let cflowState = {
     lastIdx: -1,
     isDragging: false,
     startX: 0,
+    lastX: 0,
+    lastTime: 0,
+    pointerVx: 0,
     dragDistance: 0,
     wheelAcc: 0,
-    wheelTimer: 0
+    wheelTimer: 0,
+    wheelSnapTimer: null,
+    tiltX: 0,
+    tiltY: 0,
+    targetTiltX: 0,
+    targetTiltY: 0
 };
 
 // ==========================================================================
@@ -34,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAvaJeanStarfield();
     initCoverFlow();
     initBottomDock();
+    initLogoMarquee();
     initTabSheets();
     initQuickSearch();
     initChatbotWidget();
@@ -247,16 +256,28 @@ function renderCoverFlowFrame(force = false) {
     cflowState.raf = 0;
     const { cw, isMobile } = getDimensions();
 
-    // Inertia spring interpolation
-    cflowState.pos += (cflowState.target - cflowState.pos) * 0.14;
-    if (Math.abs(cflowState.target - cflowState.pos) < 0.001) {
+    // Smooth spring physics with fluid damping
+    const lerpRate = cflowState.isDragging ? 0.22 : 0.095;
+    const posDiff = cflowState.target - cflowState.pos;
+    cflowState.pos += posDiff * lerpRate;
+
+    if (Math.abs(posDiff) < 0.0005 && !cflowState.isDragging) {
         cflowState.pos = cflowState.target;
+    }
+
+    // Smooth 3D stage tilt following mouse cursor (Nexora Parallax)
+    cflowState.tiltX += (cflowState.targetTiltX - cflowState.tiltX) * 0.08;
+    cflowState.tiltY += (cflowState.targetTiltY - cflowState.tiltY) * 0.08;
+    const stage = document.getElementById('cflowStage');
+    if (stage) {
+        stage.style.transform = `perspective(1350px) rotateX(${cflowState.tiltX.toFixed(2)}deg) rotateY(${cflowState.tiltY.toFixed(2)}deg)`;
     }
 
     // Generous breathing room calculations
     const gap = cw * (isMobile ? 0.9 : 1.15);
     const side = cw * (isMobile ? 1.05 : 1.25);
     const rot = 24; // Balanced tilt angle
+    const now = performance.now();
 
     cflowState.cards.forEach((card, i) => {
         const offset = i - cflowState.pos;
@@ -275,7 +296,10 @@ function renderCoverFlowFrame(force = false) {
         const rotY = -sign * rot * clampOffset;
         const transZ = -220 * clampOffset + (1 - clampOffset) * 40;
 
-        card.style.transform = `translate3d(${x.toFixed(1)}px, 0, ${transZ.toFixed(1)}px) rotateY(${rotY.toFixed(2)}deg)`;
+        // Subtle organic breathing float wave for weightless, alive feel
+        const waveFloat = Math.sin(now * 0.0016 + i * 0.65) * 3.5;
+
+        card.style.transform = `translate3d(${x.toFixed(1)}px, ${waveFloat.toFixed(1)}px, ${transZ.toFixed(1)}px) rotateY(${rotY.toFixed(2)}deg)`;
         card.style.zIndex = 100 - Math.round(absOffset * 10);
         card.style.setProperty('--sh', (clampOffset * 0.55).toFixed(2));
         card.classList.toggle('r', offset > 0);
@@ -288,7 +312,14 @@ function renderCoverFlowFrame(force = false) {
         updateActiveDisplay(activeIdx);
     }
 
-    if (cflowState.pos !== cflowState.target || force) {
+    // Maintain smooth 60fps loop for fluid motion and organic breathing
+    const isMoving = Math.abs(cflowState.target - cflowState.pos) > 0.0005 || 
+                     cflowState.isDragging || 
+                     Math.abs(cflowState.targetTiltX - cflowState.tiltX) > 0.02;
+
+    if (isMoving || force) {
+        cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
+    } else {
         cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
     }
 }
@@ -328,10 +359,16 @@ function setupCoverFlowEvents(stage) {
     let pointerStartX = null;
     let startTarget = 0;
     let hasMoved = false;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocityX = 0;
 
     stage.addEventListener('pointerdown', (e) => {
         pointerStartX = e.clientX;
         startTarget = cflowState.target;
+        lastX = e.clientX;
+        lastTime = performance.now();
+        velocityX = 0;
         hasMoved = false;
         cflowState.isDragging = true;
         stage.classList.add('grabbing');
@@ -340,12 +377,31 @@ function setupCoverFlowEvents(stage) {
 
     stage.addEventListener('pointermove', (e) => {
         if (pointerStartX === null) return;
+        const now = performance.now();
+        const dt = Math.max(1, now - lastTime);
         const deltaX = e.clientX - pointerStartX;
-        if (Math.abs(deltaX) > 6) hasMoved = true;
+        const instantDx = e.clientX - lastX;
+
+        // Exponential smoothing for velocity (px/ms)
+        const currentVx = instantDx / dt;
+        velocityX = velocityX * 0.4 + currentVx * 0.6;
+        lastX = e.clientX;
+        lastTime = now;
+
+        if (Math.abs(deltaX) > 5) hasMoved = true;
 
         const { cw } = getDimensions();
         const maxIdx = cflowState.list.length - 1;
-        cflowState.target = Math.max(-0.4, Math.min(maxIdx + 0.4, startTarget - deltaX / (cw * 0.65)));
+
+        // Free drag tracking with soft rubber-band resistance at boundaries
+        const dragCards = deltaX / (cw * 0.75);
+        let desiredTarget = startTarget - dragCards;
+        if (desiredTarget < 0) {
+            desiredTarget = desiredTarget * 0.35;
+        } else if (desiredTarget > maxIdx) {
+            desiredTarget = maxIdx + (desiredTarget - maxIdx) * 0.35;
+        }
+        cflowState.target = desiredTarget;
 
         if (!cflowState.raf) {
             cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
@@ -357,6 +413,9 @@ function setupCoverFlowEvents(stage) {
         stage.classList.remove('grabbing');
         pointerStartX = null;
         cflowState.isDragging = false;
+
+        const { cw } = getDimensions();
+        const maxIdx = cflowState.list.length - 1;
 
         if (!hasMoved) {
             const elements = document.elementsFromPoint(e.clientX, e.clientY);
@@ -370,30 +429,72 @@ function setupCoverFlowEvents(stage) {
                 }
             }
         } else {
-            navigateToProject(Math.round(cflowState.target));
+            // Apply natural flick momentum!
+            let momentumCards = 0;
+            if (Math.abs(velocityX) > 0.16) {
+                // Carry momentum through based on flick speed
+                momentumCards = -velocityX * 350 / cw;
+                momentumCards = Math.max(-2.5, Math.min(2.5, momentumCards));
+            }
+            const predictedTarget = cflowState.target + momentumCards;
+            const finalIdx = Math.max(0, Math.min(maxIdx, Math.round(predictedTarget)));
+            navigateToProject(finalIdx);
         }
     };
 
     stage.addEventListener('pointerup', endPointer);
     stage.addEventListener('pointercancel', endPointer);
 
-    // Mouse Wheel Scroll Navigation
+    // Continuous, buttery-smooth mouse wheel & trackpad glide
     stage.addEventListener('wheel', (e) => {
         e.preventDefault();
         const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-        cflowState.wheelAcc += delta;
-        const now = performance.now();
+        const maxIdx = cflowState.list.length - 1;
 
-        if (Math.abs(cflowState.wheelAcc) > 35 && now - cflowState.wheelTimer > 120) {
-            navigateToProject(Math.round(cflowState.target) + Math.sign(cflowState.wheelAcc));
-            cflowState.wheelAcc = 0;
-            cflowState.wheelTimer = now;
+        // Fluid trackpad & wheel accumulation
+        cflowState.target = Math.max(-0.4, Math.min(maxIdx + 0.4, cflowState.target + delta * 0.0022));
+
+        if (!cflowState.raf) {
+            cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
         }
+
+        clearTimeout(cflowState.wheelSnapTimer);
+        cflowState.wheelSnapTimer = setTimeout(() => {
+            navigateToProject(Math.round(cflowState.target));
+        }, 110);
     }, { passive: false });
+
+    // Interactive 3D Cursor Parallax
+    window.addEventListener('pointermove', (e) => {
+        const W = window.innerWidth;
+        const H = window.innerHeight;
+        cflowState.targetTiltX = (e.clientY / H - 0.5) * -5.0; // degrees
+        cflowState.targetTiltY = (e.clientX / W - 0.5) * 6.5; // degrees
+        if (!cflowState.raf) {
+            cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
+        }
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
         renderCoverFlowFrame(true);
     });
+}
+
+// ==========================================================================
+//  INFINITE SEAMLESS LOGO MARQUEE (FROM NEXORA WEBSITE)
+// ==========================================================================
+
+function initLogoMarquee() {
+    const track = document.getElementById('logoTrack');
+    if (!track) return;
+
+    const logos = ['framer', 'huawei', 'instagram', 'microsoft', 'walmart'];
+    const repeated = [...logos, ...logos, ...logos, ...logos];
+    track.innerHTML = repeated.map(name => `
+        <div class="marquee-logo-item" title="${name}">
+            <img src="./assets/companies-logo/${name}.svg" alt="${name}" draggable="false" onerror="this.style.display='none'">
+        </div>
+    `).join('');
 }
 
 function initKeyboardNavigation() {
