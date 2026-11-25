@@ -535,9 +535,29 @@ function initBottomDock() {
 }
 
 // ==========================================================================
-//  TAB SHEETS ROUTER (SERVICES, ABOUT, PRICING, CONTACT, PROJECT DETAILS)
-//  No Long Vertical Scrolling | Clean Dedicated Overlays
+//  AVAJEAN FULL-PAGE OVERLAY SHEETS ROUTER & CONTROLS
+//  About, Services, Process, Pricing, Contact, and Project Details
 // ==========================================================================
+
+// Track pointer origin for AvaJean circular clip-path reveal animation
+document.addEventListener('pointerdown', e => {
+    document.documentElement.style.setProperty('--cx', e.clientX + 'px');
+    document.documentElement.style.setProperty('--cy', e.clientY + 'px');
+}, true);
+
+document.addEventListener('keydown', () => {
+    document.documentElement.style.setProperty('--cx', '50%');
+    document.documentElement.style.setProperty('--cy', '50%');
+}, true);
+
+const TAB_SHEETS = {
+    'about': 'sheet-about',
+    'services': 'sheet-services',
+    'process': 'sheet-process',
+    'pricing': 'sheet-pricing',
+    'contact': 'sheet-contact',
+    'project': 'sheet-project'
+};
 
 function initTabSheets() {
     // Brand Link click returns to Work
@@ -545,6 +565,7 @@ function initTabSheets() {
     if (brandLink) {
         brandLink.addEventListener('click', (e) => {
             e.preventDefault();
+            window.location.hash = '#work';
             closeAllTabSheets();
         });
     }
@@ -552,37 +573,63 @@ function initTabSheets() {
     // Top Nav Tab Buttons
     const tabBtns = document.querySelectorAll('.nav-tab-btn');
     tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
             const tabName = btn.dataset.tab;
             if (tabName === 'work') {
+                window.location.hash = '#work';
                 closeAllTabSheets();
-                setActiveNavTab('work');
             } else {
+                window.location.hash = '#' + tabName;
                 openTabSheet(`sheet-${tabName}`);
                 setActiveNavTab(tabName);
             }
         });
     });
 
-    // Close buttons on all sheets
-    document.querySelectorAll('.sheet-close-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+    // Back buttons on all sheets
+    document.querySelectorAll('.sheet .back').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.hash = '#work';
             closeAllTabSheets();
         });
     });
 
-    // Backdrop clicks on all sheets
-    document.querySelectorAll('.tab-sheet').forEach(sheet => {
-        sheet.addEventListener('click', (e) => {
-            if (e.target === sheet) {
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const openSheet = document.querySelector('.sheet.open');
+            if (openSheet) {
+                window.location.hash = '#work';
                 closeAllTabSheets();
             }
-        });
+        }
     });
 
-    // Render contents inside tab sheets
-    renderServicesSheet();
-    renderPricingSheet();
+    // Listen to hash changes for browser back/forward and deep linking
+    window.addEventListener('hashchange', handleHashRoute);
+    handleHashRoute();
+
+    // Initialize Interactive Brief Builder in Contact Sheet
+    initBriefBuilder();
+
+    // Initialize Copy Email buttons
+    initCopyEmail();
+}
+
+function handleHashRoute() {
+    const raw = (window.location.hash || '#work').slice(1).toLowerCase();
+    if (raw === 'work' || !raw) {
+        closeAllTabSheets();
+        setActiveNavTab('work');
+    } else if (TAB_SHEETS[raw]) {
+        openTabSheet(TAB_SHEETS[raw]);
+        setActiveNavTab(raw);
+    } else if (raw.startsWith('project-') || raw.startsWith('p-')) {
+        const pid = raw.replace(/^(project-|p-)/, '');
+        const p = FLAGSHIP_PROJECTS.find(x => x.slug === pid || x.id === pid);
+        if (p) openProjectDetails(p, false);
+    }
 }
 
 function setActiveNavTab(tabName) {
@@ -592,17 +639,22 @@ function setActiveNavTab(tabName) {
 }
 
 function openTabSheet(sheetId) {
-    closeAllTabSheets(false);
+    document.querySelectorAll('.sheet').forEach(s => {
+        if (s.id !== sheetId) s.classList.remove('open');
+    });
     const targetSheet = document.getElementById(sheetId);
     if (targetSheet) {
         targetSheet.classList.add('open');
+        targetSheet.scrollTop = 0;
+        document.body.classList.add('sheet-open');
     }
 }
 
 function closeAllTabSheets(resetNav = true) {
-    document.querySelectorAll('.tab-sheet').forEach(sheet => {
+    document.querySelectorAll('.sheet').forEach(sheet => {
         sheet.classList.remove('open');
     });
+    document.body.classList.remove('sheet-open');
     if (resetNav) {
         setActiveNavTab('work');
     }
@@ -613,67 +665,16 @@ window.closeAllTabSheets = closeAllTabSheets;
 window.openTabSheet = openTabSheet;
 window.openProjectDetails = openProjectDetails;
 
-// Render Services Sheet
-function renderServicesSheet() {
-    const container = document.getElementById('servicesSheetBody');
-    if (!container) return;
-
-    container.innerHTML = '';
-    const grid = document.createElement('div');
-    grid.className = 'services-sheet-grid';
-
-    SERVICES_DATA.forEach(srv => {
-        const card = document.createElement('div');
-        card.className = 'service-sheet-card';
-        card.innerHTML = `
-            <span class="service-card-tag">${srv.category}</span>
-            <h4 class="service-card-title">${srv.title}</h4>
-            <p class="service-card-desc">${srv.desc}</p>
-            <ul class="service-deliverables-list">
-                ${srv.deliverables.map(d => `<li>${d}</li>`).join('')}
-            </ul>
-        `;
-        grid.appendChild(card);
-    });
-
-    container.appendChild(grid);
-}
-
-// Render Pricing Sheet
-function renderPricingSheet() {
-    const container = document.getElementById('pricingSheetBody');
-    if (!container) return;
-
-    container.innerHTML = '';
-    const grid = document.createElement('div');
-    grid.className = 'pricing-sheet-grid';
-
-    PRICING_DATA.forEach(plan => {
-        const card = document.createElement('div');
-        card.className = `pricing-sheet-card ${plan.popular ? 'featured' : ''}`;
-        card.innerHTML = `
-            <h4 class="pricing-tier-name">${plan.tier}</h4>
-            <p class="pricing-best-for">${plan.bestFor}</p>
-            <div class="pricing-amount">${plan.range}</div>
-            <ul class="pricing-features-list">
-                ${plan.features.map(f => `<li>${f}</li>`).join('')}
-            </ul>
-            <a href="${BRAND_INFO.whatsappLink}?text=${encodeURIComponent(plan.whatsappMsg)}" target="_blank" rel="noopener noreferrer" class="pricing-action-btn">
-                ${plan.buttonText}
-            </a>
-        `;
-        grid.appendChild(card);
-    });
-
-    container.appendChild(grid);
-}
-
 // Open Dedicated Project Details Sheet
-function openProjectDetails(project) {
+function openProjectDetails(project, updateHash = true) {
     if (!project) return;
     const sheet = document.getElementById('sheet-project');
     const body = document.getElementById('projectSheetBody');
     if (!sheet || !body) return;
+
+    if (updateHash) {
+        window.location.hash = `#project-${project.slug}`;
+    }
 
     body.innerHTML = `
         <div class="project-detail-layout">
@@ -682,32 +683,116 @@ function openProjectDetails(project) {
             </div>
             <div class="project-detail-info">
                 <span class="project-detail-badge">${project.badge}</span>
-                <h3 class="project-detail-title">${project.title}</h3>
+                <h2 class="project-detail-title">${project.title}</h2>
                 <p class="project-detail-subtitle">${project.subtitle} • ${project.category}</p>
                 <p class="project-detail-desc">${project.desc}</p>
                 <div class="project-detail-tags">
                     ${project.tags.map(t => `<span class="project-tag-pill">${t}</span>`).join('')}
                 </div>
                 <div class="project-detail-actions">
-                    <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer" class="action-link-btn primary">
-                        <span>Live Deployment</span>
+                    <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer" class="pill big">
+                        <span>Visit Live Website</span>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
                     ${project.videoLink ? `
-                    <a href="${project.videoLink}" target="_blank" rel="noopener noreferrer" class="action-link-btn secondary">
+                    <a href="${project.videoLink}" target="_blank" rel="noopener noreferrer" class="pill ghost">
                         <span>Video Demo</span>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    </a>` : `
-                    <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="action-link-btn secondary">
+                    </a>` : ''}
+                    <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="pill ghost">
                         <span>GitHub Code</span>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    </a>`}
+                    </a>
                 </div>
             </div>
         </div>
     `;
 
     openTabSheet('sheet-project');
+}
+
+// Interactive Project Brief Builder
+function initBriefBuilder() {
+    const chipsContainer = document.getElementById('briefChips');
+    const msgInput = document.getElementById('briefMsg');
+    const sendWaBtn = document.getElementById('briefSendWa');
+    const sendMailBtn = document.getElementById('briefSendMail');
+    const copyBriefBtn = document.getElementById('briefCopy');
+    const statusText = document.getElementById('briefStatus');
+
+    if (!chipsContainer) return;
+
+    // Toggle active state on chips
+    chipsContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.chip-btn');
+        if (!btn) return;
+        btn.classList.toggle('active');
+    });
+
+    function getSelectedServices() {
+        const active = chipsContainer.querySelectorAll('.chip-btn.active');
+        return Array.from(active).map(b => b.dataset.service || b.textContent.trim());
+    }
+
+    function buildBriefSummary() {
+        const services = getSelectedServices();
+        const msg = (msgInput ? msgInput.value.trim() : '') || 'I would like to discuss engineering solutions for my business.';
+        return `*Nexora Solvex Project Brief*\n` +
+               `Services: ${services.length ? services.join(', ') : 'Web & AI Engineering'}\n` +
+               `Details: ${msg}`;
+    }
+
+    if (sendWaBtn) {
+        sendWaBtn.addEventListener('click', () => {
+            const summary = buildBriefSummary().replace(/\n/g, '%0A');
+            const url = `https://wa.me/923182370631?text=${encodeURIComponent(buildBriefSummary().replace(/\n/g, '\n'))}`;
+            window.open(url, '_blank');
+        });
+    }
+
+    if (sendMailBtn) {
+        sendMailBtn.addEventListener('click', () => {
+            const services = getSelectedServices().join(', ') || 'Digital Architecture';
+            const msg = (msgInput ? msgInput.value.trim() : '') || 'We would like to consult on a new project.';
+            const subject = encodeURIComponent(`Project Brief: ${services} - Nexora Solvex`);
+            const body = encodeURIComponent(`Hello Nexora Team,\n\nServices Requested: ${services}\n\nProject Scope:\n${msg}\n\nLooking forward to your response.`);
+            window.location.href = `mailto:nexoradevx@gmail.com?subject=${subject}&body=${body}`;
+        });
+    }
+
+    if (copyBriefBtn) {
+        copyBriefBtn.addEventListener('click', async () => {
+            const text = buildBriefSummary().replace(/\n/g, '\n');
+            try {
+                await navigator.clipboard.writeText(text);
+                if (statusText) {
+                    statusText.textContent = 'Brief copied to clipboard!';
+                    setTimeout(() => { statusText.textContent = ''; }, 3000);
+                }
+            } catch {
+                if (statusText) {
+                    statusText.textContent = 'Failed to copy';
+                }
+            }
+        });
+    }
+}
+
+// Copy Email Button in Contact Sheet
+function initCopyEmail() {
+    const copyBtn = document.getElementById('copyMailBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText('nexoradevx@gmail.com');
+                const orig = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => { copyBtn.textContent = orig; }, 2000);
+            } catch {
+                // fallback
+            }
+        });
+    }
 }
 
 // ==========================================================================
