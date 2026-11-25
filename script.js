@@ -465,5 +465,286 @@ function initLogoMarquee() {
     const logos = ['framer', 'huawei', 'instagram', 'microsoft', 'walmart'];
     const repeated = [...logos, ...logos, ...logos, ...logos];
     track.innerHTML = repeated.map(name => `
+        <div class="marquee-logo-item" title="${name}">
+            <img src="./assets/companies-logo/${name}.svg" alt="${name}" draggable="false" onerror="this.style.display='none'">
+        </div>
+    `).join('');
+}
 
-// Direct pointer tracking active
+function initKeyboardNavigation() {
+    window.addEventListener('keydown', (e) => {
+        // If any tab sheet or search modal is open, let them handle Escape
+        const activeSheet = document.querySelector('.tab-sheet.open');
+        const search = document.getElementById('searchModal');
+
+        if (activeSheet) {
+            if (e.key === 'Escape') closeAllTabSheets();
+            return;
+        }
+        if (search && search.classList.contains('open')) {
+            if (e.key === 'Escape') closeQuickSearch();
+            return;
+        }
+
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            navigateToProject(Math.round(cflowState.target) + 1);
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            navigateToProject(Math.round(cflowState.target) - 1);
+        } else if (e.key === 'Enter') {
+            const activeIdx = Math.round(cflowState.pos);
+            if (cflowState.list[activeIdx]) {
+                openProjectDetails(cflowState.list[activeIdx]);
+            }
+        }
+    });
+}
+
+// ==========================================================================
+//  FLOATING BOTTOM DOCK CONTROLS (THE 6 PROJECTS)
+// ==========================================================================
+
+function initBottomDock() {
+    const filtersContainer = document.getElementById('dockFilters');
+    if (!filtersContainer) return;
+
+    filtersContainer.innerHTML = '';
+
+    // "ALL" Pill
+    const allPill = document.createElement('button');
+    allPill.className = 'dock-pill active';
+    allPill.dataset.id = 'all';
+    allPill.textContent = 'ALL';
+    allPill.addEventListener('click', () => {
+        navigateToProject(0);
+    });
+    filtersContainer.appendChild(allPill);
+
+    // Pill for each of the 6 Projects
+    cflowState.list.forEach((project, idx) => {
+        const pill = document.createElement('button');
+        pill.className = 'dock-pill';
+        pill.dataset.id = project.id;
+        pill.textContent = project.title;
+        pill.addEventListener('click', () => {
+            navigateToProject(idx);
+        });
+        filtersContainer.appendChild(pill);
+    });
+}
+
+// ==========================================================================
+//  TAB SHEETS ROUTER (SERVICES, ABOUT, PRICING, CONTACT, PROJECT DETAILS)
+//  No Long Vertical Scrolling | Clean Dedicated Overlays
+// ==========================================================================
+
+function initTabSheets() {
+    // Brand Link click returns to Work
+    const brandLink = document.querySelector('.nav-brand');
+    if (brandLink) {
+        brandLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeAllTabSheets();
+        });
+    }
+
+    // Top Nav Tab Buttons
+    const tabBtns = document.querySelectorAll('.nav-tab-btn');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabName = btn.dataset.tab;
+            if (tabName === 'work') {
+                closeAllTabSheets();
+                setActiveNavTab('work');
+            } else {
+                openTabSheet(`sheet-${tabName}`);
+                setActiveNavTab(tabName);
+            }
+        });
+    });
+
+    // Close buttons on all sheets
+    document.querySelectorAll('.sheet-close-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            closeAllTabSheets();
+        });
+    });
+
+    // Backdrop clicks on all sheets
+    document.querySelectorAll('.tab-sheet').forEach(sheet => {
+        sheet.addEventListener('click', (e) => {
+            if (e.target === sheet) {
+                closeAllTabSheets();
+            }
+        });
+    });
+
+    // Render contents inside tab sheets
+    renderServicesSheet();
+    renderPricingSheet();
+}
+
+function setActiveNavTab(tabName) {
+    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+    });
+}
+
+function openTabSheet(sheetId) {
+    closeAllTabSheets(false);
+    const targetSheet = document.getElementById(sheetId);
+    if (targetSheet) {
+        targetSheet.classList.add('open');
+    }
+}
+
+function closeAllTabSheets(resetNav = true) {
+    document.querySelectorAll('.tab-sheet').forEach(sheet => {
+        sheet.classList.remove('open');
+    });
+    if (resetNav) {
+        setActiveNavTab('work');
+    }
+}
+
+// Global window exposure for tab sheets and modals
+window.closeAllTabSheets = closeAllTabSheets;
+window.openTabSheet = openTabSheet;
+window.openProjectDetails = openProjectDetails;
+
+// Render Services Sheet
+function renderServicesSheet() {
+    const container = document.getElementById('servicesSheetBody');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const grid = document.createElement('div');
+    grid.className = 'services-sheet-grid';
+
+    SERVICES_DATA.forEach(srv => {
+        const card = document.createElement('div');
+        card.className = 'service-sheet-card';
+        card.innerHTML = `
+            <span class="service-card-tag">${srv.category}</span>
+            <h4 class="service-card-title">${srv.title}</h4>
+            <p class="service-card-desc">${srv.desc}</p>
+            <ul class="service-deliverables-list">
+                ${srv.deliverables.map(d => `<li>${d}</li>`).join('')}
+            </ul>
+        `;
+        grid.appendChild(card);
+    });
+
+    container.appendChild(grid);
+}
+
+// Render Pricing Sheet
+function renderPricingSheet() {
+    const container = document.getElementById('pricingSheetBody');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const grid = document.createElement('div');
+    grid.className = 'pricing-sheet-grid';
+
+    PRICING_DATA.forEach(plan => {
+        const card = document.createElement('div');
+        card.className = `pricing-sheet-card ${plan.popular ? 'featured' : ''}`;
+        card.innerHTML = `
+            <h4 class="pricing-tier-name">${plan.tier}</h4>
+            <p class="pricing-best-for">${plan.bestFor}</p>
+            <div class="pricing-amount">${plan.range}</div>
+            <ul class="pricing-features-list">
+                ${plan.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+            <a href="${BRAND_INFO.whatsappLink}?text=${encodeURIComponent(plan.whatsappMsg)}" target="_blank" rel="noopener noreferrer" class="pricing-action-btn">
+                ${plan.buttonText}
+            </a>
+        `;
+        grid.appendChild(card);
+    });
+
+    container.appendChild(grid);
+}
+
+// Open Dedicated Project Details Sheet
+function openProjectDetails(project) {
+    if (!project) return;
+    const sheet = document.getElementById('sheet-project');
+    const body = document.getElementById('projectSheetBody');
+    if (!sheet || !body) return;
+
+    body.innerHTML = `
+        <div class="project-detail-layout">
+            <div class="project-detail-media">
+                <img src="${project.previewImg}" alt="${project.title}">
+            </div>
+            <div class="project-detail-info">
+                <span class="project-detail-badge">${project.badge}</span>
+                <h3 class="project-detail-title">${project.title}</h3>
+                <p class="project-detail-subtitle">${project.subtitle} • ${project.category}</p>
+                <p class="project-detail-desc">${project.desc}</p>
+                <div class="project-detail-tags">
+                    ${project.tags.map(t => `<span class="project-tag-pill">${t}</span>`).join('')}
+                </div>
+                <div class="project-detail-actions">
+                    <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer" class="action-link-btn primary">
+                        <span>Live Deployment</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    ${project.videoLink ? `
+                    <a href="${project.videoLink}" target="_blank" rel="noopener noreferrer" class="action-link-btn secondary">
+                        <span>Video Demo</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </a>` : `
+                    <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="action-link-btn secondary">
+                        <span>GitHub Code</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    </a>`}
+                </div>
+            </div>
+        </div>
+    `;
+
+    openTabSheet('sheet-project');
+}
+
+// ==========================================================================
+//  QUICK SEARCH (FUZZY SEARCH MODAL)
+// ==========================================================================
+
+function initQuickSearch() {
+    const triggerBtn = document.getElementById('searchTriggerBtn');
+    const modal = document.getElementById('searchModal');
+    const closeBtn = document.getElementById('searchEscBtn');
+    const input = document.getElementById('searchInput');
+    const resultsContainer = document.getElementById('searchResults');
+
+    if (triggerBtn) {
+        triggerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openQuickSearch();
+        });
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeQuickSearch);
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeQuickSearch();
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openQuickSearch();
+        } else if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            openQuickSearch();
+        }
+    });
+
+// Freeze on touch & integer snapping
