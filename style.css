@@ -437,9 +437,7 @@ html, body {
     box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(90, 59, 140, 0.18);
     /* Subtle Floor Reflection */
     -webkit-box-reflect: below 6px linear-gradient(transparent 85%, rgba(0, 0, 0, 0.35));
-    transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.2s ease;
+    transition: filter 0.15s ease;
     cursor: pointer;
 }
 
@@ -490,7 +488,7 @@ html, body {
     object-position: top center;
     pointer-events: none;
     display: block;
-    transition: transform 0.35s ease;
+    transition: transform 0.15s ease;
 }
 
 .cf-card:hover .cf-card-preview img {
@@ -729,7 +727,7 @@ html, body {
     border-radius: 999px;
     cursor: pointer;
     white-space: nowrap;
-    transition: all 0.2s ease;
+    transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
 }
 
 .dock-pill:hover {
@@ -752,6 +750,10 @@ html, body {
 
 /* Fade out Cover Flow & bottom dock when any sheet is open so canvas starfield shines cleanly without card bleed-through */
 main {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
     transition: opacity 0.25s ease, visibility 0s 0s;
 }
 

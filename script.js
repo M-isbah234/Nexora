@@ -29,6 +29,38 @@ let cflowState = {
     wheelTimer: 0
 };
 
+// High-Performance 220ms Navigation Animation State (Fast, silky smooth, no sluggish tail)
+let navAnim = {
+    startPos: 0,
+    targetPos: 0,
+    startTime: 0,
+    duration: 220,
+    active: false
+};
+
+function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+}
+
+// Cached dimensions: updated ONLY on window resize, never on every animation frame!
+let cachedDimensions = { cw: 285, ch: 376, isMobile: false };
+
+function updateDimensions() {
+    const W = window.innerWidth;
+    const isMobile = W < 760;
+    const cw = isMobile ? 240 : Math.min(285, Math.round(W * 0.25));
+    const ch = Math.round(cw * 1.32);
+    const cfy = Math.round(window.innerHeight * 0.42);
+
+    const root = document.documentElement;
+    root.style.setProperty('--cw', `${cw}px`);
+    root.style.setProperty('--ch', `${ch}px`);
+    root.style.setProperty('--cfy', `${cfy}px`);
+
+    cachedDimensions = { cw, ch, isMobile };
+    return cachedDimensions;
+}
+
 // ==========================================================================
 //  APPLICATION INITIALIZATION
 // ==========================================================================
@@ -181,6 +213,7 @@ function initCoverFlow() {
 
     stage.innerHTML = '';
     cflowState.cards = [];
+    updateDimensions();
 
     // Build the 6 Flagship Project Cards
     cflowState.list.forEach((project, index) => {
@@ -215,13 +248,14 @@ function initCoverFlow() {
         card.appendChild(preview);
         card.appendChild(hint);
 
-        // Click Handler
-        card.addEventListener('click', () => {
+        // Direct, instantaneous card click handler
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
             const idx = parseInt(card.dataset.index, 10);
             if (idx === Math.round(cflowState.pos)) {
                 openProjectDetails(cflowState.list[idx]);
             } else {
-                navigateToProject(idx);
+                navigateToProject(idx, 220);
             }
         });
 
@@ -231,43 +265,15 @@ function initCoverFlow() {
 
     cflowState.target = 0;
     cflowState.pos = 0;
-    cflowState.lastIdx = -1;
+    cflowState.lastIdx = 0;
 
     setupCoverFlowEvents(stage);
-    renderCoverFlowFrame(true);
+    renderCoverFlowFrame();
+    updateActiveDisplay(0);
 }
 
-function getDimensions() {
-    const W = window.innerWidth;
-    const isMobile = W < 760;
-    const cw = isMobile ? 240 : Math.min(285, Math.round(W * 0.25));
-    const ch = Math.round(cw * 1.32);
-    const cfy = Math.round(window.innerHeight * 0.42);
-
-    const root = document.documentElement;
-    root.style.setProperty('--cw', `${cw}px`);
-    root.style.setProperty('--ch', `${ch}px`);
-    root.style.setProperty('--cfy', `${cfy}px`);
-
-    return { cw, ch, isMobile };
-}
-
-function renderCoverFlowFrame(force = false) {
-    cflowState.raf = 0;
-    const { cw, isMobile } = getDimensions();
-
-    if (!cflowState.isDragging) {
-        // High-Speed Snappy Spring Ease toward target (crisp, agile 0.28 rate)
-        const diff = cflowState.target - cflowState.pos;
-        cflowState.pos += diff * 0.28;
-
-        // STOP ON COMMAND: When settled within 0.002, snap exactly to target and STOP
-        if (Math.abs(diff) < 0.002) {
-            cflowState.pos = cflowState.target;
-        }
-    }
-
-    // Exact AvaJean Cover Flow perspective spacing
+function renderCoverFlowFrame() {
+    const { cw, isMobile } = cachedDimensions;
     const few = cflowState.list.length <= 6;
     const gap = cw * (isMobile ? 0.82 : few ? 1.2 : 1.05);
     const side = cw * (isMobile ? 0.96 : few ? 1.18 : 1.1);
@@ -296,18 +302,6 @@ function renderCoverFlowFrame(force = false) {
         card.classList.toggle('r', offset > 0);
         card.classList.toggle('active', Math.round(cflowState.pos) === i);
     });
-
-    const activeIdx = Math.max(0, Math.min(cflowState.list.length - 1, Math.round(cflowState.pos)));
-    if (activeIdx !== cflowState.lastIdx) {
-        cflowState.lastIdx = activeIdx;
-        updateActiveDisplay(activeIdx);
-    }
-
-    // ONLY continue animation loop if position hasn't settled yet or forced
-    // When settled, IT STOPS COMPLETELY ON COMMAND!
-    if (cflowState.pos !== cflowState.target || force) {
-        cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
-    }
 }
 
 function updateActiveDisplay(idx) {
@@ -328,16 +322,61 @@ function updateActiveDisplay(idx) {
 
     // Sync Bottom Dock Filter Pills
     document.querySelectorAll('.dock-pill').forEach(pill => {
-        const isMatch = pill.dataset.id === project.id;
-        pill.classList.toggle('active', isMatch);
+        if (pill.dataset.id === 'all') {
+            pill.classList.toggle('active', idx === 0);
+        } else {
+            pill.classList.toggle('active', pill.dataset.id === project.id);
+        }
     });
 }
 
-function navigateToProject(idx) {
+function navigateToProject(idx, duration = 220) {
     const maxIdx = cflowState.list.length - 1;
-    cflowState.target = Math.max(0, Math.min(maxIdx, idx));
+    const targetIdx = Math.max(0, Math.min(maxIdx, idx));
+
+    if (cflowState.target === targetIdx && navAnim.active) return;
+
+    cflowState.target = targetIdx;
+    cflowState.lastIdx = targetIdx;
+    updateActiveDisplay(targetIdx); // Instant text and dock update
+
+    if (Math.abs(cflowState.pos - targetIdx) < 0.001) {
+        cflowState.pos = targetIdx;
+        renderCoverFlowFrame();
+        return;
+    }
+
+    navAnim.startPos = cflowState.pos;
+    navAnim.targetPos = targetIdx;
+    navAnim.startTime = performance.now();
+    navAnim.duration = duration;
+    navAnim.active = true;
+
     if (!cflowState.raf) {
-        cflowState.raf = requestAnimationFrame(() => renderCoverFlowFrame());
+        cflowState.raf = requestAnimationFrame(animationLoop);
+    }
+}
+
+function animationLoop(now) {
+    cflowState.raf = 0;
+
+    if (navAnim.active && !cflowState.isDragging) {
+        const elapsed = now - navAnim.startTime;
+        const progress = Math.min(1, elapsed / navAnim.duration);
+        const ease = easeOutCubic(progress);
+
+        cflowState.pos = navAnim.startPos + (navAnim.targetPos - navAnim.startPos) * ease;
+
+        if (progress >= 1) {
+            cflowState.pos = navAnim.targetPos;
+            navAnim.active = false;
+        }
+    }
+
+    renderCoverFlowFrame();
+
+    if (navAnim.active && !cflowState.isDragging) {
+        cflowState.raf = requestAnimationFrame(animationLoop);
     }
 }
 
@@ -349,18 +388,31 @@ function setupCoverFlowEvents(stage) {
     let lastTime = 0;
     let velocityX = 0;
 
+    // Delegated click listener directly on stage (robust across all browsers and child elements)
+    stage.addEventListener('click', (e) => {
+        if (hasMoved) return;
+        const cardEl = e.target.closest('.cf-card');
+        if (!cardEl) return;
+        const idx = parseInt(cardEl.dataset.index, 10);
+        if (isNaN(idx)) return;
+
+        if (idx === Math.round(cflowState.pos)) {
+            openProjectDetails(cflowState.list[idx]);
+        } else {
+            navigateToProject(idx, 220);
+        }
+    });
+
     stage.addEventListener('pointerdown', (e) => {
-        // STOP ON COMMAND: If carousel was moving, immediately freeze in place at exact position
-        cflowState.target = cflowState.pos;
+        // Stop any running programmatic animation
+        navAnim.active = false;
         startTarget = cflowState.pos;
         pointerStartX = e.clientX;
         lastX = e.clientX;
         lastTime = performance.now();
         velocityX = 0;
         hasMoved = false;
-        cflowState.isDragging = true;
-        stage.classList.add('grabbing');
-        stage.setPointerCapture(e.pointerId);
+        cflowState.isDragging = false;
     });
 
     stage.addEventListener('pointermove', (e) => {
@@ -370,15 +422,21 @@ function setupCoverFlowEvents(stage) {
         const deltaX = e.clientX - pointerStartX;
         const instantDx = e.clientX - lastX;
 
-        // Exponential smoothing for swipe velocity (px/ms)
+        // Exponential smoothing for swipe velocity
         const currentVx = instantDx / dt;
         velocityX = velocityX * 0.3 + currentVx * 0.7;
         lastX = e.clientX;
         lastTime = now;
 
-        if (Math.abs(deltaX) > 4) hasMoved = true;
+        if (Math.abs(deltaX) > 6) {
+            hasMoved = true;
+            cflowState.isDragging = true;
+            stage.classList.add('grabbing');
+        }
 
-        const { cw } = getDimensions();
+        if (!cflowState.isDragging) return;
+
+        const { cw } = cachedDimensions;
         const maxIdx = cflowState.list.length - 1;
 
         // DIRECT 1:1 FINGER TRACKING: moves effortlessly and instantly under your cursor
@@ -392,46 +450,46 @@ function setupCoverFlowEvents(stage) {
         cflowState.target = desired;
         cflowState.pos = desired; // 1:1 instant position tracking while dragging
 
-        renderCoverFlowFrame(false);
+        renderCoverFlowFrame();
     });
 
     const endPointer = (e) => {
         if (pointerStartX === null) return;
         stage.classList.remove('grabbing');
         pointerStartX = null;
+        const wasDragging = cflowState.isDragging;
         cflowState.isDragging = false;
 
-        const { cw } = getDimensions();
         const maxIdx = cflowState.list.length - 1;
 
-        if (!hasMoved) {
-            // Tap or Click
-            const elements = document.elementsFromPoint(e.clientX, e.clientY);
-            const cardEl = elements.find(el => el.classList && el.classList.contains('cf-card'));
-            if (cardEl) {
-                const clickedIdx = parseInt(cardEl.dataset.index, 10);
-                if (clickedIdx === Math.round(cflowState.pos)) {
-                    openProjectDetails(cflowState.list[clickedIdx]);
-                } else {
-                    navigateToProject(clickedIdx);
-                }
-            }
-        } else {
-            // Swipe release: natural fluid inertia flick & snap
+        if (wasDragging) {
+            // Swipe release: natural fluid inertia flick & snap in 220ms
             let snapIdx;
             const speed = Math.abs(velocityX);
             if (speed > 0.08) {
-                // Natural dynamic flick gesture
                 const flickDir = -Math.sign(velocityX);
                 const flickSteps = speed > 1.2 ? 3 : speed > 0.38 ? 2 : 1;
                 snapIdx = Math.round(cflowState.pos) + flickDir * flickSteps;
             } else {
-                // Slower drag: snap cleanly to nearest card
                 snapIdx = Math.round(cflowState.pos);
             }
 
             snapIdx = Math.max(0, Math.min(maxIdx, snapIdx));
-            navigateToProject(snapIdx);
+            navigateToProject(snapIdx, 220);
+        } else if (!hasMoved) {
+            // Tap or Click: if active card, open project details; if side card, navigate
+            const cardEl = e.target.closest('.cf-card') || 
+                           document.elementsFromPoint(e.clientX, e.clientY).find(n => n.classList && n.classList.contains('cf-card'));
+            if (cardEl) {
+                const clickedIdx = parseInt(cardEl.dataset.index, 10);
+                if (!isNaN(clickedIdx)) {
+                    if (clickedIdx === Math.round(cflowState.pos)) {
+                        openProjectDetails(cflowState.list[clickedIdx]);
+                    } else {
+                        navigateToProject(clickedIdx, 220);
+                    }
+                }
+            }
         }
     };
 
@@ -449,14 +507,15 @@ function setupCoverFlowEvents(stage) {
 
         if (Math.abs(wheelAcc) > 14 && now - wheelTimer > 35) {
             const step = Math.sign(wheelAcc);
-            navigateToProject(Math.round(cflowState.target) + step);
+            navigateToProject(Math.round(cflowState.target) + step, 200);
             wheelAcc = 0;
             wheelTimer = now;
         }
     }, { passive: false });
 
     window.addEventListener('resize', () => {
-        renderCoverFlowFrame(true);
+        updateDimensions();
+        renderCoverFlowFrame();
     });
 }
 
