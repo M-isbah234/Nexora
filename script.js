@@ -62,17 +62,18 @@ function initAvaJeanStarfield() {
 
     function seedStars() {
         stars = [];
-        const count = Math.round((W * H) / 3400); // Dense, elegant starfield
+        const count = Math.round((W * H) / 4000); // Optimized elegant starfield for ultra-fluid 60-120fps
         for (let i = 0; i < count; i++) {
             const z = Math.random();
+            const colType = Math.random();
             stars.push({
                 x: Math.random() * W,
                 y: Math.random() * H,
                 z: z,
                 r: 0.35 + z * 1.05,
                 tw: Math.random() * 6.28,
-                ts: 0.6 + Math.random() * 2.2,
-                col: ((r) => r < 0.1 ? '201,194,227' : r < 0.35 ? '139,124,199' : '255,255,255')(Math.random())
+                ts: 0.8 + Math.random() * 2.2,
+                colIndex: colType < 0.14 ? 0 : colType < 0.40 ? 1 : 2 // 0: lavender, 1: purple, 2: white
             });
         }
     }
@@ -102,23 +103,27 @@ function initAvaJeanStarfield() {
     let nextShootTime = 3000;
 
     function renderStarfield(t) {
-        px += (mx - px) * 0.04;
-        py += (my - py) * 0.04;
+        px += (mx - px) * 0.05;
+        py += (my - py) * 0.05;
         ctx.clearRect(0, 0, W, H);
 
-        for (const s of stars) {
-            s.x += 0.02 + s.z * 0.06; // Slow organic drift
-            if (s.x > W + 4) s.x = -4;
-
-            const x = s.x - px * s.z * 55; // Parallax
-            const y = s.y - py * s.z * 55;
-
-            // Twinkle calculation
-            const alpha = (0.35 + 0.65 * Math.abs(Math.sin(t * 0.001 * s.ts + s.tw))) * (0.35 + s.z * 0.65);
-
-            ctx.fillStyle = `rgba(${s.col}, ${alpha})`;
+        // High-Speed GPU Batched Rendering: 3 single draw calls per frame
+        const colors = ['rgba(201, 194, 227, 0.78)', 'rgba(139, 124, 199, 0.65)', 'rgba(255, 255, 255, 0.88)'];
+        for (let c = 0; c < 3; c++) {
+            ctx.fillStyle = colors[c];
             ctx.beginPath();
-            ctx.arc(x, y, s.r, 0, 6.283);
+            for (let i = 0; i < stars.length; i++) {
+                const s = stars[i];
+                if (s.colIndex !== c) continue;
+                s.x += 0.03 + s.z * 0.07;
+                if (s.x > W + 4) s.x = -4;
+
+                const x = s.x - px * s.z * 50;
+                const y = s.y - py * s.z * 50;
+
+                ctx.moveTo(x + s.r, y);
+                ctx.arc(x, y, s.r, 0, 6.283);
+            }
             ctx.fill();
         }
 
@@ -252,12 +257,12 @@ function renderCoverFlowFrame(force = false) {
     const { cw, isMobile } = getDimensions();
 
     if (!cflowState.isDragging) {
-        // Silky smooth, organic spring ease toward target (AvaJean 0.16 rate)
+        // High-Speed Snappy Spring Ease toward target (crisp, agile 0.28 rate)
         const diff = cflowState.target - cflowState.pos;
-        cflowState.pos += diff * 0.16;
+        cflowState.pos += diff * 0.28;
 
-        // STOP ON COMMAND: When settled within 0.001, snap exactly to target and STOP
-        if (Math.abs(diff) < 0.001) {
+        // STOP ON COMMAND: When settled within 0.002, snap exactly to target and STOP
+        if (Math.abs(diff) < 0.002) {
             cflowState.pos = cflowState.target;
         }
     }
@@ -376,8 +381,8 @@ function setupCoverFlowEvents(stage) {
         const { cw } = getDimensions();
         const maxIdx = cflowState.list.length - 1;
 
-        // DIRECT 1:1 FINGER TRACKING: moves immediately under your cursor
-        const dragCards = deltaX / (cw * 0.52);
+        // DIRECT 1:1 FINGER TRACKING: moves effortlessly and instantly under your cursor
+        const dragCards = deltaX / (cw * 0.35);
         let desired = startTarget - dragCards;
 
         // Soft rubber-band resistance at ends
@@ -412,12 +417,13 @@ function setupCoverFlowEvents(stage) {
                 }
             }
         } else {
-            // Swipe release: move and stop on command
+            // Swipe release: natural fluid inertia flick & snap
             let snapIdx;
-            if (Math.abs(velocityX) > 0.18) {
-                // Flick gesture: step in flick direction
+            const speed = Math.abs(velocityX);
+            if (speed > 0.08) {
+                // Natural dynamic flick gesture
                 const flickDir = -Math.sign(velocityX);
-                const flickSteps = Math.abs(velocityX) > 0.75 ? 2 : 1;
+                const flickSteps = speed > 1.2 ? 3 : speed > 0.38 ? 2 : 1;
                 snapIdx = Math.round(cflowState.pos) + flickDir * flickSteps;
             } else {
                 // Slower drag: snap cleanly to nearest card
@@ -432,7 +438,7 @@ function setupCoverFlowEvents(stage) {
     stage.addEventListener('pointerup', endPointer);
     stage.addEventListener('pointercancel', endPointer);
 
-    // Mouse Wheel & Trackpad Navigation (Responsive, smooth step and snap)
+    // Mouse Wheel & Trackpad Navigation (Fast, responsive, fluid step and snap)
     let wheelAcc = 0;
     let wheelTimer = 0;
     stage.addEventListener('wheel', (e) => {
@@ -441,7 +447,7 @@ function setupCoverFlowEvents(stage) {
         wheelAcc += delta;
         const now = performance.now();
 
-        if (Math.abs(wheelAcc) > 30 && now - wheelTimer > 80) {
+        if (Math.abs(wheelAcc) > 14 && now - wheelTimer > 35) {
             const step = Math.sign(wheelAcc);
             navigateToProject(Math.round(cflowState.target) + step);
             wheelAcc = 0;

@@ -109,7 +109,7 @@ html, body {
     z-index: 0;
     filter: blur(65px);
     opacity: 0.6;
-    animation: pulseAmbientOrb 11s ease-in-out infinite alternate;
+    animation: pulseAmbientOrb 7s ease-in-out infinite alternate;
 }
 
 .ambient-orb-top-left {
@@ -189,6 +189,7 @@ html, body {
     font-size: 20px;
     letter-spacing: -0.02em;
     color: var(--text-pure);
+    white-space: nowrap;
 }
 
 .nav-brand-badge {
@@ -436,9 +437,9 @@ html, body {
     box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(90, 59, 140, 0.18);
     /* Subtle Floor Reflection */
     -webkit-box-reflect: below 6px linear-gradient(transparent 85%, rgba(0, 0, 0, 0.35));
-    transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.3s ease;
+    transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.2s ease;
     cursor: pointer;
 }
 
@@ -631,7 +632,7 @@ html, body {
     align-items: center;
     gap: 48px;
     width: max-content;
-    animation: marqueeScroll 22s linear infinite;
+    animation: marqueeScroll 12s linear infinite;
 }
 
 @keyframes marqueeScroll {
@@ -773,13 +774,13 @@ body.sheet-open main {
     overscroll-behavior: contain;
     visibility: hidden;
     clip-path: circle(0% at var(--cx, 50%) var(--cy, 50%));
-    transition: clip-path 0.85s cubic-bezier(0.77, 0, 0.175, 1), visibility 0s 0.85s;
+    transition: clip-path 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s 0.38s;
 }
 
 .sheet.open {
     visibility: visible;
     clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
-    transition: clip-path 0.95s cubic-bezier(0.77, 0, 0.175, 1), visibility 0s, background-color 0.8s ease;
+    transition: clip-path 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
 }
 
 .sheet::before {
@@ -994,7 +995,7 @@ h2.sec {
 .ts-track {
     display: flex;
     gap: 12px;
-    animation: marquee 24s linear infinite;
+    animation: marquee 13s linear infinite;
     width: max-content;
 }
 
@@ -1898,6 +1899,13 @@ h2.sec {
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(90, 59, 140, 0.5);
     transition: transform 0.2s ease;
+}
+
+@media (max-width: 1024px) {
+    .chatbot-fab {
+        bottom: 84px;
+        right: 18px;
+    }
 }
 
 .chatbot-fab::before {
